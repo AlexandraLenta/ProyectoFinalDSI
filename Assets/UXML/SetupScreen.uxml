@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ui:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ui="UnityEngine.UIElements"
-    xmlns:uie="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
->
-    
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Container" style="flex-grow: 1;">
+        <ui:VisualElement name="Topbar" style="flex-grow: 1; flex-direction: row; height: 7%; flex-wrap: wrap; justify-content: space-between; align-content: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+            <ui:Label text="Setup" name="Setup" style="width: 1798px; -unity-text-align: middle-center; font-size: 50px; height: 58px;"/>
+            <ui:Button text="Button" name="HelpButton" style="width: 5%;"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="SetupScreen" style="flex-grow: 1; height: 93%; flex-direction: row;">
+            <ui:VisualElement name="MainScreen" style="flex-grow: 1; width: 80%;"/>
+            <ui:VisualElement name="Sidebar" style="flex-grow: 1; width: 20%;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
