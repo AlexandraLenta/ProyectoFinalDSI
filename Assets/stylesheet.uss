@@ -1,0 +1,57 @@
+:root {
+}
+
+.sidebar-title {
+    font-size: 50px;
+    -unity-font-definition: resource("Fonts/Aladin-Regular");
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(213, 242, 227);
+    -unity-font-style: normal;
+}
+
+.scene-title {
+    -unity-font-definition: resource("Fonts/Aladin-Regular");
+    color: rgb(0, 55, 31);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(213, 242, 227);
+    text-overflow: clip;
+    white-space: normal;
+    font-size: 55px;
+    -unity-font-style: bold;
+}
+
+.side-bar {
+    flex-grow: 1;
+    width: 20%;
+    background-color: rgb(115, 186, 155);
+    border-left-color: rgb(0, 62, 31);
+    border-right-color: rgb(0, 62, 31);
+    border-top-color: rgb(0, 62, 31);
+    border-bottom-color: rgb(0, 62, 31);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+
+
+.field {
+    -unity-font-definition: resource("Fonts/Aladin-Regular");
+    font-size: 25px;
+    color: rgb(0, 62, 31);
+    -unity-text-align: middle-left;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+}
