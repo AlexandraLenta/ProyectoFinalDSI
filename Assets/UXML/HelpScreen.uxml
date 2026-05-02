@@ -1,9 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ui:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ui="UnityEngine.UIElements"
-    xmlns:uie="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
->
-    
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Topbar" src="project://database/Assets/UXML/Templates/Topbar.uxml?fileID=9197481963319205126&amp;guid=39ad76582b34a834b91735e6512f8402&amp;type=3#Topbar"/>
+    <Style src="project://database/Assets/stylesheet.uss?fileID=7433441132597879392&amp;guid=f6325ce37e11e7b4c8a3e508c4d145c7&amp;type=3#stylesheet"/>
+    <ui:VisualElement name="Container" style="flex-grow: 1;">
+        <ui:Instance template="Topbar">
+            <AttributeOverrides element-name="Setup" text="Help"/>
+        </ui:Instance>
+        <ui:VisualElement name="MainScreen" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="Pestanias" style="flex-grow: 1; width: 20%; flex-direction: column;">
+                <ui:Button name="CharacterTab" text="Character" style="flex-grow: 1; margin-top: 10px; margin-bottom: 5px;"/>
+                <ui:Button name="MovementTab" text="Movement" style="flex-grow: 1; margin-top: 5px; margin-bottom: 5px;"/>
+                <ui:Button name="AttackTab" text="Attack" style="flex-grow: 1; margin-top: 5px; margin-bottom: 10px;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="Contenido" style="flex-grow: 1; width: 80%;">
+                <ui:VisualElement name="CharacterPage" class="page" style="display: flex; visibility: visible; flex-grow: 1; background-color: rgb(213, 242, 227);">
+                    <ui:Image name="CharacterImage" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
