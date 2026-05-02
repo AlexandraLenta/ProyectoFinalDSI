@@ -6,14 +6,20 @@
             <AttributeOverrides element-name="Setup" text="Help"/>
         </ui:Instance>
         <ui:VisualElement name="MainScreen" style="flex-grow: 1; flex-direction: row;">
-            <ui:VisualElement name="Pestanias" style="flex-grow: 1; width: 20%; flex-direction: column;">
-                <ui:Button name="CharacterTab" text="Character" style="flex-grow: 1; margin-top: 10px; margin-bottom: 5px;"/>
-                <ui:Button name="MovementTab" text="Movement" style="flex-grow: 1; margin-top: 5px; margin-bottom: 5px;"/>
-                <ui:Button name="AttackTab" text="Attack" style="flex-grow: 1; margin-top: 5px; margin-bottom: 10px;"/>
+            <ui:VisualElement name="Pestanias" style="flex-grow: 1; width: 20%; flex-direction: column; align-items: center; padding-top: 30px; padding-right: 30px; padding-bottom: 550px; padding-left: 30px; background-color: rgb(213, 242, 227);">
+                <ui:Button name="CharacterTab" text="Character" class="classic-button help-menu-button" style="flex-grow: 1; margin-top: 20px; margin-bottom: 20px; width: 405px; height: 54px; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; background-color: rgb(115, 186, 155); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; margin-right: 20px; margin-left: 20px;"/>
+                <ui:Button name="MovementTab" text="Movement" class="classic-button help-menu-button" style="flex-grow: 1; margin-top: 20px; margin-bottom: 20px; width: 400px; padding-right: 10px; padding-left: 10px; background-color: rgb(115, 186, 155); margin-right: 20px; margin-left: 20px;"/>
+                <ui:Button name="AttackTab" text="Attack" class="classic-button help-menu-button" style="flex-grow: 1; margin-top: 20px; margin-bottom: 20px; width: 400px; padding-right: 10px; padding-left: 10px; background-color: rgb(115, 186, 155); margin-right: 20px; margin-left: 20px;"/>
             </ui:VisualElement>
             <ui:VisualElement name="Contenido" style="flex-grow: 1; width: 80%;">
                 <ui:VisualElement name="CharacterPage" class="page" style="display: flex; visibility: visible; flex-grow: 1; background-color: rgb(213, 242, 227);">
-                    <ui:Image name="CharacterImage" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
+                    <ui:Image name="CharacterImage" source="project://database/Assets/Resources/placeholder.png?fileID=2800000&amp;guid=bb93f4d666da89645abdb6e9cf9b01f6&amp;type=3#placeholder" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="MovementPage" class="page" style="display: none; visibility: visible; flex-grow: 1; background-color: rgb(213, 242, 227);">
+                    <ui:Image name="MovementImage" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="AttackPage" class="page" style="display: none; visibility: visible; flex-grow: 1; background-color: rgb(213, 242, 227);">
+                    <ui:Image name="AttackImage" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
