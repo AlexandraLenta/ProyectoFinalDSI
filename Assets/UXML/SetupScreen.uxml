@@ -7,14 +7,16 @@
             <ui:VisualElement name="MainScreen" style="flex-grow: 1; width: 80%;"/>
             <ui:VisualElement name="Sidebar" class="side-bar">
                 <ui:Label text="Add character" name="AddTitle" class="sidebar-title" style="margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;"/>
-                <ui:TextField label="Name:" placeholder-text="insert character name" name="NameField" enabled="true" tooltip="insert the current character&apos;s name!" readonly="true" vertical-scroller-visibility="Auto" class="field" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
-                <ui:IntegerField label="HP:" value="0" name="HpField" class="field"/>
+                <ui:TextField label="Name:" placeholder-text="insert character name" name="NameField" enabled="true" tooltip="insert the current character&apos;s name!" readonly="false" vertical-scroller-visibility="Auto" class="field" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 66px;"/>
+                <ui:IntegerField label="HP:" value="0" name="HpField" max-length="3" class="field"/>
                 <ui:SliderInt label="Attack:" value="5" high-value="20" name="AttackField" class="field"/>
                 <ui:DropdownField label="Image:" name="ImageField" class="field"/>
-                <ui:VisualElement name="ImageView" style="flex-grow: 1;"/>
-                <ui:VisualElement name="AddButtons" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
-                    <ui:Button text="Button"/>
-                    <ui:Button text="Button"/>
+                <ui:VisualElement name="ImageView" style="flex-grow: 0; padding-top: 70px; padding-right: 80px; padding-bottom: 80px; padding-left: 80px; aspect-ratio: 1; width: 100%; height: auto;">
+                    <ui:VisualElement name="CharacterImage" style="flex-grow: 1; background-color: rgb(213, 242, 227); border-left-color: rgb(0, 62, 31); border-right-color: rgb(0, 62, 31); border-top-color: rgb(0, 62, 31); border-bottom-color: rgb(0, 62, 31); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="AddButtons" style="flex-grow: 1; flex-direction: row; justify-content: space-around; translate: 0 0%; align-self: stretch; align-items: flex-end; padding-bottom: 40px;">
+                    <ui:Button text="Add Player" class="classic-button"/>
+                    <ui:Button text="Add Enemy" class="classic-button" style="height: 54px;"/>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
