@@ -38,19 +38,19 @@ public class HelpMenu : MonoBehaviour
 
         navCharacter.RegisterCallback<ClickEvent>((evt) =>
         {
-            Debug.Log("Azul");
+            Debug.Log("CharacterPage");
             NoContenido();
             contenidoCharacter.style.display = DisplayStyle.Flex;
         });
         navMovement.RegisterCallback<ClickEvent>((evt) =>
         {
-            Debug.Log("Verde");
+            Debug.Log("MovementPage");
             NoContenido();
             contenidoMovement.style.display = DisplayStyle.Flex;
         });
         navAttack.RegisterCallback<ClickEvent>((evt) =>
         {
-            Debug.Log("Amarillo");
+            Debug.Log("AttackPage");
             NoContenido();
             contenidoAttack.style.display = DisplayStyle.Flex;
         });

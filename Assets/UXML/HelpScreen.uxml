@@ -13,13 +13,13 @@
             </ui:VisualElement>
             <ui:VisualElement name="Contenido" style="flex-grow: 1; width: 80%;">
                 <ui:VisualElement name="CharacterPage" class="page" style="display: flex; visibility: visible; flex-grow: 1; background-color: rgb(213, 242, 227);">
-                    <ui:Image name="CharacterImage" source="project://database/Assets/Resources/placeholder.png?fileID=2800000&amp;guid=bb93f4d666da89645abdb6e9cf9b01f6&amp;type=3#placeholder" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
+                    <ui:Image name="CharacterImage" source="project://database/Assets/Resources/placeholder.png?fileID=2800000&amp;guid=bb93f4d666da89645abdb6e9cf9b01f6&amp;type=3#placeholder" scale-mode="StretchToFill" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="MovementPage" class="page" style="display: none; visibility: visible; flex-grow: 1; background-color: rgb(213, 242, 227);">
-                    <ui:Image name="MovementImage" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
+                    <ui:Image name="MovementImage" source="project://database/Assets/Resources/mouseButt.png?fileID=2800000&amp;guid=59ac4be9efb1fdf449fa330c325160b8&amp;type=3#mouseButt" scale-mode="StretchToFill" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="AttackPage" class="page" style="display: none; visibility: visible; flex-grow: 1; background-color: rgb(213, 242, 227);">
-                    <ui:Image name="AttackImage" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
+                    <ui:Image name="AttackImage" source="project://database/Assets/Resources/manoZanahoria.png?fileID=2800000&amp;guid=37d8e73a1ef2ef1408c1310cb37a6ace&amp;type=3#manoZanahoria" scale-mode="StretchToFill" style="padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; flex-grow: 1; display: flex;"/>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
