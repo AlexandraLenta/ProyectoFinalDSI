@@ -1,18 +1,36 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="Topbar" src="project://database/Assets/UXML/Templates/Topbar.uxml?fileID=9197481963319205126&amp;guid=39ad76582b34a834b91735e6512f8402&amp;type=3#Topbar"/>
     <Style src="project://database/Assets/stylesheet.uss?fileID=7433441132597879392&amp;guid=f6325ce37e11e7b4c8a3e508c4d145c7&amp;type=3#stylesheet"/>
     <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgb(213, 242, 227);">
-        <ui:Instance template="Topbar" name="Topbar" style="height: 80px;"/>
+        <ui:VisualElement name="Topbar" template="Topbar" style="height: 80px;">
+            <ui:VisualElement name="Topbar" style="flex-grow: 1; flex-direction: row; height: 7%; flex-wrap: wrap; justify-content: space-between; align-content: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; background-color: rgb(0, 62, 31);">
+                <ui:Label text="Setup" name="Setup" class="scene-title" style="-unity-text-align: middle-center; width: 2461px;"/>
+                <ui:Button text="" name="HelpButton" style="width: 64px; background-image: resource(&quot;Buttons/Help_Button&quot;); background-color: rgba(188, 188, 188, 0); aspect-ratio: 1; height: 64px; border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="SetupScreen" style="flex-grow: 1; height: 93%; flex-direction: row;">
-            <ui:VisualElement name="MainScreen" style="flex-grow: 1; width: 80%;"/>
+            <ui:VisualElement name="MainScreen" style="flex-grow: 1; width: 80%; align-items: center; padding-top: 50px; padding-right: 50px; padding-bottom: 50px; padding-left: 50px;">
+                <ui:VisualElement name="EnemySide" class="character-side">
+                    <ui:Label text="Enemy characters" name="Title" style="-unity-text-align: middle-center; -unity-font-definition: resource(&quot;Fonts/Aladin-Regular&quot;); font-size: 45px;"/>
+                    <ui:VisualElement name="Characters" style="flex-grow: 1; width: 60%; flex-shrink: 1;">
+                        <ui:VisualElement name="Tile" style="flex-grow: 1;">
+                            <ui:VisualElement name="Image" style="flex-grow: 1;"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="Separator" style="flex-grow: 0; background-image: resource(&quot;Separator_Line&quot;); height: 0.5%; width: 100%; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px;"/>
+                <ui:VisualElement name="PlayerSide" class="character-side" style="flex-grow: 1; width: 100%;">
+                    <ui:Label text="Player characters" name="PlayerTitle" style="-unity-text-align: middle-center; -unity-font-definition: resource(&quot;Fonts/Aladin-Regular&quot;); font-size: 45px;"/>
+                </ui:VisualElement>
+                <ui:Button text="Button" name="StartButton" class="classic-button" style="-unity-text-align: middle-center;"/>
+            </ui:VisualElement>
             <ui:VisualElement name="Sidebar" class="side-bar">
                 <ui:Label text="Add character" name="AddTitle" class="sidebar-title" style="margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;"/>
                 <ui:TextField label="Name:" placeholder-text="insert character name" name="NameField" enabled="true" tooltip="insert the current character&apos;s name!" readonly="false" vertical-scroller-visibility="Auto" class="field" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 66px;"/>
                 <ui:IntegerField label="HP:" value="0" name="HpField" max-length="3" class="field"/>
                 <ui:SliderInt label="Attack:" value="5" high-value="20" name="AttackField" class="field"/>
                 <ui:DropdownField label="Image:" name="ImageField" class="field"/>
-                <ui:VisualElement name="ImageView" style="flex-grow: 0; padding-top: 70px; padding-right: 80px; padding-bottom: 80px; padding-left: 80px; aspect-ratio: 1; width: 100%; height: auto;">
-                    <ui:VisualElement name="CharacterImage" style="flex-grow: 1; background-color: rgb(213, 242, 227); border-left-color: rgb(0, 62, 31); border-right-color: rgb(0, 62, 31); border-top-color: rgb(0, 62, 31); border-bottom-color: rgb(0, 62, 31); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;"/>
+                <ui:VisualElement name="ImageView" style="flex-grow: 0; padding-top: 90px; padding-right: 90px; padding-bottom: 90px; padding-left: 90px; aspect-ratio: 1; width: 100%; height: auto;">
+                    <ui:VisualElement name="CharacterImage" style="flex-grow: 1; background-color: rgb(213, 242, 227); border-left-color: rgb(0, 62, 31); border-right-color: rgb(0, 62, 31); border-top-color: rgb(0, 62, 31); border-bottom-color: rgb(0, 62, 31); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; aspect-ratio: 1; width: 50%; height: 50%;"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="AddButtons" style="flex-grow: 1; flex-direction: row; justify-content: space-around; translate: 0 0%; align-self: stretch; align-items: flex-end; padding-bottom: 40px;">
                     <ui:Button text="Add Player" class="classic-button"/>
