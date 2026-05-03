@@ -164,3 +164,23 @@
     padding-bottom: 30px;
     padding-left: 30px;
 }
+
+.tile-name {
+    -unity-text-align: middle-center;
+    -unity-font-definition: resource("Fonts/Aladin-Regular");
+    font-size: 40px;
+}
+
+.tile {
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.tile-image {
+    flex-grow: 0;
+    aspect-ratio: 1;
+    background-color: rgb(115, 186, 155);
+}
