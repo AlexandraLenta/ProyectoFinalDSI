@@ -9,9 +9,9 @@ public class HelpMenu : MonoBehaviour
     VisualElement contenidoMovement;
     VisualElement contenidoAttack;
 
-    VisualElement navCharacter;
-    VisualElement navMovement;
-    VisualElement navAttack;
+    VisualElement pestaniaCharacter;
+    VisualElement pestaniaMovement;
+    VisualElement pestaniaAttack;
 
     private void NoContenido()
     {
@@ -25,32 +25,32 @@ public class HelpMenu : MonoBehaviour
         UIDocument uiDoc = GetComponent<UIDocument>();
         VisualElement root = uiDoc.rootVisualElement;
 
-        VisualElement nav = root.Q<VisualElement>("Pestanias");
-        VisualElement body = root.Q<VisualElement>("Contenido");
+        VisualElement pestanias = root.Q<VisualElement>("Pestanias");
+        VisualElement contenido = root.Q<VisualElement>("Contenido");
 
-        contenidoCharacter = root.Q<VisualElement>("CharacterTab");
-        contenidoMovement = root.Q<VisualElement>("MovementTab");
-        contenidoAttack = root.Q<VisualElement>("AttackTab");
+        pestaniaCharacter = root.Q<Button>("CharacterTab");
+        pestaniaMovement = root.Q<Button>("MovementTab");
+        pestaniaAttack = root.Q<Button>("AttackTab");
 
-        navCharacter = root.Q<VisualElement>("CharacterPage");
-        navMovement = root.Q<VisualElement>("MovementPage");
-        navAttack = root.Q<VisualElement>("AttackPage");
+        contenidoCharacter = root.Q<VisualElement>("CharacterPage");
+        contenidoMovement = root.Q<VisualElement>("MovementPage");
+        contenidoAttack = root.Q<VisualElement>("AttackPage");
 
-        navCharacter.RegisterCallback<ClickEvent>((evt) =>
+        pestaniaCharacter.RegisterCallback<ClickEvent>((evt) =>
         {
-            Debug.Log("CharacterPage");
+            Debug.Log("Character");
             NoContenido();
             contenidoCharacter.style.display = DisplayStyle.Flex;
         });
-        navMovement.RegisterCallback<ClickEvent>((evt) =>
+        pestaniaMovement.RegisterCallback<ClickEvent>((evt) =>
         {
-            Debug.Log("MovementPage");
+            Debug.Log("Movement");
             NoContenido();
             contenidoMovement.style.display = DisplayStyle.Flex;
         });
-        navAttack.RegisterCallback<ClickEvent>((evt) =>
+        pestaniaAttack.RegisterCallback<ClickEvent>((evt) =>
         {
-            Debug.Log("AttackPage");
+            Debug.Log("Attack");
             NoContenido();
             contenidoAttack.style.display = DisplayStyle.Flex;
         });
