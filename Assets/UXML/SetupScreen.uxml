@@ -64,8 +64,8 @@
                     <ui:VisualElement name="CharacterImage" style="flex-grow: 1; background-color: rgb(213, 242, 227); border-left-color: rgb(0, 62, 31); border-right-color: rgb(0, 62, 31); border-top-color: rgb(0, 62, 31); border-bottom-color: rgb(0, 62, 31); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; aspect-ratio: 1; width: 50%; height: 50%;"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="AddButtons" style="flex-grow: 1; flex-direction: row; justify-content: space-around; translate: 0 0%; align-self: stretch; align-items: flex-end; padding-bottom: 40px;">
-                    <ui:Button text="Add Player" class="classic-button"/>
-                    <ui:Button text="Add Enemy" class="classic-button" style="height: 54px;"/>
+                    <ui:Button text="Add Player" name="PlayerButton" class="classic-button"/>
+                    <ui:Button text="Add Enemy" name="EnemyButton" class="classic-button" style="height: 54px;"/>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
