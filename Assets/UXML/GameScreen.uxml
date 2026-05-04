@@ -1,9 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ui:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ui="UnityEngine.UIElements"
-    xmlns:uie="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
->
-    
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Topbar" src="project://database/Assets/UXML/Templates/Topbar.uxml?fileID=9197481963319205126&amp;guid=39ad76582b34a834b91735e6512f8402&amp;type=3#Topbar"/>
+    <Style src="project://database/Assets/stylesheet.uss?fileID=7433441132597879392&amp;guid=f6325ce37e11e7b4c8a3e508c4d145c7&amp;type=3#stylesheet"/>
+    <ui:VisualElement name="Container" style="flex-grow: 1;">
+        <ui:Instance template="Topbar">
+            <AttributeOverrides element-name="Setup" text="Game"/>
+        </ui:Instance>
+        <ui:VisualElement name="GameScreen" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="MainScreen" style="flex-grow: 1; width: 80%; background-color: rgb(213, 242, 227);"/>
+            <ui:VisualElement name="SideBar" class="side-bar" style="flex-grow: 1;">
+                <ui:Label text="Stats" name="SideBarTitle" class="sidebar-title"/>
+                <ui:Label text="Name :" name="Name" class="field" style="overflow: visible; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"/>
+                <ui:Label text="Hp :" name="hp" class="field" style="overflow: hidden; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"/>
+                <ui:Label text="Attack :" name="Attack" class="field" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"/>
+                <ui:VisualElement name="AddButtons" style="flex-grow: 1; flex-direction: row; justify-content: space-around; translate: 0 0%; align-self: stretch; align-items: flex-end; padding-bottom: 40px;">
+                    <ui:Button text="Move" name="MoveButton" class="classic-button"/>
+                    <ui:Button text="Attack" name="AttackButton" class="classic-button" style="height: 54px;"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
