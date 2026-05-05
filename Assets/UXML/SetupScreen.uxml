@@ -52,7 +52,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:Button text="Button" name="StartButton" class="classic-button" style="-unity-text-align: middle-center; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; translate: 0 50%; height: 91px; width: 247px; background-color: rgb(0, 62, 31); color: rgb(213, 242, 227); font-size: 45px; text-shadow: 0 0 0 rgba(0, 0, 0, 0);"/>
+                <ui:Button text="Start Game" name="StartButton" class="classic-button" style="-unity-text-align: middle-center; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; translate: 0 50%; height: 91px; width: 247px; background-color: rgb(0, 62, 31); color: rgb(213, 242, 227); font-size: 45px; text-shadow: 0 0 0 rgba(0, 0, 0, 0);"/>
             </ui:VisualElement>
             <ui:VisualElement name="Sidebar" class="side-bar">
                 <ui:Label text="Add character" name="AddTitle" class="sidebar-title" style="margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;"/>
