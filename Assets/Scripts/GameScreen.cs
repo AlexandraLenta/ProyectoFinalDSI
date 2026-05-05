@@ -1,16 +1,25 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameScreen : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    EndScreen _endScreen;
+
+    VisualElement _root;
+
+    Button _helpButton;
+
+    void OnEnable()
     {
-        
+        _root = GetComponent<UIDocument>().rootVisualElement;
+
+        _root.Q("GameScreen").style.display = DisplayStyle.Flex;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void OnDisable()
     {
-        
+        _root.Q("GameScreen").style.display = DisplayStyle.None;
+
     }
 }

@@ -12,14 +12,21 @@ public class SetupScreen : MonoBehaviour
     VisualElement _root;
     Button _playerButton;
     Button _enemyButton;
+    Button _startButton;
+
     string _currImageName;
     DropdownField _imageDropdown;
     VisualElement _currImageElement;
     Texture2D _currImage;
     List<Character> _characterList;
 
+    GameScreen _gameScreen;
+
     void OnEnable()
     {
+        //coger game screen
+        _gameScreen = GetComponent<GameScreen>();
+
         // coger todos los elementos necesarios
         _root = GetComponent<UIDocument>().rootVisualElement;
         
@@ -28,12 +35,14 @@ public class SetupScreen : MonoBehaviour
 
         _playerButton = _root.Q<Button>("PlayerButton");
         _enemyButton = _root.Q<Button>("EnemyButton");
+        _startButton = _root.Q<Button>("StartGameButton");
         _imageDropdown = _root.Q<DropdownField>("ImageField");
         _currImageElement = _root.Q("CharacterImage");
 
         // registrar callbacks
         _playerButton.RegisterCallback<ClickEvent, CharacterType>(AddCharacter, CharacterType.PLAYER);
         _enemyButton.RegisterCallback<ClickEvent, CharacterType>(AddCharacter, CharacterType.ENEMY);
+        _startButton.RegisterCallback<ClickEvent>(StartGame);
         _imageDropdown.RegisterCallback<ChangeEvent<string>>(ChangeImage);
 
         // crear lista de personajes
@@ -61,6 +70,13 @@ public class SetupScreen : MonoBehaviour
         _currImage = Resources.Load<Texture2D>(_currImageName);
 
         _currImageElement.style.backgroundImage = new StyleBackground(_currImage);
+    }
+
+    void StartGame(ClickEvent ev)
+    {
+        _gameScreen.enabled = true;
+
+        this.enabled = false;
     }
 
     void OnDisable()
