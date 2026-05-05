@@ -1,16 +1,34 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class StartScreen : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    SetupScreen _setupScreen;
+    VisualElement _root;
+    
+    void OnEnable()
     {
-        
+        _setupScreen = GetComponent<SetupScreen>();
+
+        _root = GetComponent<UIDocument>().rootVisualElement;
+
+        // activar el start screen
+        _root.Q("StartScreen").style.display = DisplayStyle.Flex;
+        // coger boton
+        VisualElement startButton = _root.Q<Button>();
+        startButton.RegisterCallback<ClickEvent>(OnStart);
     }
 
-    // Update is called once per frame
-    void Update()
+    // cambiar al setup screen cuando empieza el juego
+    void OnStart(ClickEvent ev)
     {
-        
+        _setupScreen.enabled = true;
+        this.enabled = false;
+    }
+
+    void OnDisable()
+    {
+        // desactivar start screen
+        _root.Q("StartScreen").style.display = DisplayStyle.None;
     }
 }

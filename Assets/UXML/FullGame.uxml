@@ -4,9 +4,9 @@
     <ui:Template name="HelpScreen" src="project://database/Assets/UXML/HelpScreen.uxml?fileID=9197481963319205126&amp;guid=73831d8140daa2844a6b80fa8a1a7068&amp;type=3#HelpScreen"/>
     <ui:Template name="SetupScreen" src="project://database/Assets/UXML/SetupScreen.uxml?fileID=9197481963319205126&amp;guid=1b6f9c023f07ef04c9205ca1f838517d&amp;type=3#SetupScreen"/>
     <ui:Template name="StartScreen" src="project://database/Assets/UXML/StartScreen.uxml?fileID=9197481963319205126&amp;guid=06a54f0b0a273fe45bd518a95e3f4486&amp;type=3#StartScreen"/>
-    <ui:Instance template="StartScreen" name="Start" style="height: 1440px; display: flex;"/>
-    <ui:Instance template="SetupScreen" name="Setup" style="display: none; height: 1440px;"/>
-    <ui:Instance template="GameScreen" name="Game" style="height: 1442px; display: none;"/>
-    <ui:Instance template="HelpScreen" name="Help" style="height: 1440px; display: none;"/>
-    <ui:Instance template="EndScreen" name="End" style="height: 1440px; display: none;"/>
+    <ui:Instance template="StartScreen" name="StartScreen" style="height: 1440px; display: flex;"/>
+    <ui:Instance template="SetupScreen" name="SetupScreen" style="display: none; height: 1440px;"/>
+    <ui:Instance template="HelpScreen" style="opacity: 1; display: none;"/>
+    <ui:Instance template="GameScreen" style="display: none;"/>
+    <ui:Instance template="EndScreen" style="display: none;"/>
 </ui:UXML>

@@ -9,6 +9,7 @@ public class SetupScreen : MonoBehaviour
         PLAYER,
         ENEMY
     }
+    VisualElement _root;
     Button _playerButton;
     Button _enemyButton;
     string _currImageName;
@@ -20,12 +21,15 @@ public class SetupScreen : MonoBehaviour
     void OnEnable()
     {
         // coger todos los elementos necesarios
-        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+        _root = GetComponent<UIDocument>().rootVisualElement;
+        
+        // activar el setup screen
+        _root.Q("SetupScreen").style.display = DisplayStyle.Flex;
 
-        _playerButton = root.Q<Button>("PlayerButton");
-        _enemyButton = root.Q<Button>("EnemyButton");
-        _imageDropdown = root.Q<DropdownField>("ImageField");
-        _currImageElement = root.Q("CharacterImage");
+        _playerButton = _root.Q<Button>("PlayerButton");
+        _enemyButton = _root.Q<Button>("EnemyButton");
+        _imageDropdown = _root.Q<DropdownField>("ImageField");
+        _currImageElement = _root.Q("CharacterImage");
 
         // registrar callbacks
         _playerButton.RegisterCallback<ClickEvent, CharacterType>(AddCharacter, CharacterType.PLAYER);
@@ -57,5 +61,11 @@ public class SetupScreen : MonoBehaviour
         _currImage = Resources.Load<Texture2D>(_currImageName);
 
         _currImageElement.style.backgroundImage = new StyleBackground(_currImage);
+    }
+
+    void OnDisable()
+    {
+        // desactivar setup screen
+        _root.Q("SetupScreen").style.display = DisplayStyle.None;
     }
 }
