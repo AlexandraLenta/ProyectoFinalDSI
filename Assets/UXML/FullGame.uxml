@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="EndScreen" src="project://database/Assets/UXML/EndScreen.uxml?fileID=9197481963319205126&amp;guid=d5468c122fa05c04e85400dcb8e1e8bf&amp;type=3#EndScreen"/>
+    <ui:Template name="GameScreen" src="project://database/Assets/UXML/GameScreen.uxml?fileID=9197481963319205126&amp;guid=8b3fcda881ee73d41b2ee5359843a926&amp;type=3#GameScreen"/>
+    <ui:Template name="HelpScreen" src="project://database/Assets/UXML/HelpScreen.uxml?fileID=9197481963319205126&amp;guid=73831d8140daa2844a6b80fa8a1a7068&amp;type=3#HelpScreen"/>
+    <ui:Template name="SetupScreen" src="project://database/Assets/UXML/SetupScreen.uxml?fileID=9197481963319205126&amp;guid=1b6f9c023f07ef04c9205ca1f838517d&amp;type=3#SetupScreen"/>
+    <ui:Template name="StartScreen" src="project://database/Assets/UXML/StartScreen.uxml?fileID=9197481963319205126&amp;guid=06a54f0b0a273fe45bd518a95e3f4486&amp;type=3#StartScreen"/>
+    <ui:Instance template="StartScreen" name="Start" style="height: 1440px; display: flex;"/>
+    <ui:Instance template="SetupScreen" name="Setup" style="display: none; height: 1440px;"/>
+    <ui:Instance template="GameScreen" name="Game" style="height: 1442px; display: none;"/>
+    <ui:Instance template="HelpScreen" name="Help" style="height: 1440px; display: none;"/>
+    <ui:Instance template="EndScreen" name="End" style="height: 1440px; display: none;"/>
+</ui:UXML>

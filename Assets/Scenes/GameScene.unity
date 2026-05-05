@@ -350,7 +350,12 @@ GameObject:
   m_Component:
   - component: {fileID: 741490983}
   - component: {fileID: 741490982}
+  - component: {fileID: 741490986}
+  - component: {fileID: 741490989}
+  - component: {fileID: 741490985}
+  - component: {fileID: 741490988}
   - component: {fileID: 741490984}
+  - component: {fileID: 741490987}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -408,6 +413,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8a6a24a6924e74fac58c8b7eb0f3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HelpMenu
+--- !u!114 &741490985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741490981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9813cea415bb8498815ac59ba2c741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SetupScreen
+--- !u!114 &741490986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741490981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680ba39d4ca306a40ba79170eef1bbfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FullGame
+--- !u!114 &741490987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741490981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36689f36503b968428f92f002bb833a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndScreen
+--- !u!114 &741490988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741490981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303e51f2559abd941bb4dc40d8f66d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameScreen
+--- !u!114 &741490989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741490981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38ffcdf855365b41bfa60fd60a39b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartScreen
 --- !u!1 &1383977706
 GameObject:
   m_ObjectHideFlags: 0
