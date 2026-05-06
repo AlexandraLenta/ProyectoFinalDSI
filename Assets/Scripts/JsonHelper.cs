@@ -2,33 +2,33 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class JsonHelperIndividual
+public static class JsonHelperCharacter
 {
-    public static List<Individual> FromJson<Individual>(string json)
+    public static List<Character> FromJson<Character>(string json)
     {
-        ListIndividual<Individual> listIndividual = JsonUtility.FromJson<ListIndividual<Individual>>(json);
-        return listIndividual.Individuals;
+        ListCharacter<Character> listCharacter = JsonUtility.FromJson<ListCharacter<Character>>(json);
+        return listCharacter.Characters;
     }
 
-    public static string ToJson<Individual>(List<Individual> list)
+    public static string ToJson<Character>(List<Character> list)
     {
-        ListIndividual<Individual> listIndividual = new ListIndividual<Individual>();
-        listIndividual.Individuals = list;
+        ListCharacter<Character> listCharacter = new ListCharacter<Character>();
+        listCharacter.Characters = list;
 
-        return JsonUtility.ToJson(listIndividual);
+        return JsonUtility.ToJson(listCharacter);
     }
 
-    public static string ToJson<Individual>(List<Individual> list, bool prettyPrint)
+    public static string ToJson<Character>(List<Character> list, bool prettyPrint)
     {
-        ListIndividual<Individual> listIndividual = new ListIndividual<Individual>();
-        listIndividual.Individuals = list;
+        ListCharacter<Character> listCharacter = new ListCharacter<Character>();
+        listCharacter.Characters = list;
 
-        return JsonUtility.ToJson(listIndividual, prettyPrint);
+        return JsonUtility.ToJson(listCharacter, prettyPrint);
     }
 
     [Serializable]
-    private class ListIndividual<Individual>
+    private class ListCharacter<Character>
     {
-        public List<Individual> Individuals;
+        public List<Character> Characters;
     }
 }

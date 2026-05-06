@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.IO;
 
 public class SetupScreen : MonoBehaviour
 {
@@ -23,6 +24,13 @@ public class SetupScreen : MonoBehaviour
 
     GameScreen _gameScreen;
     HelpMenu _helpMenu;
+
+    // Variables por defecto
+    const string DEFAULT_NAME = "Unnamed";
+    const int DEFAULT_HP = 100;
+    const int DEFAULT_ATTACK = 10;
+    const string DEFAULT_IMAGE = "default_char";
+
     void OnEnable()
     {
         //coger game screen
@@ -57,14 +65,48 @@ public class SetupScreen : MonoBehaviour
     // agregar personaje
     void AddCharacter(ClickEvent ev, CharacterType type)
     {
+        if (_characterList.Count >= 4)
+        {
+            Debug.Log("Max 4 characters reached!");
+            return;
+        }
+
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         TextField nameField = root.Q<TextField>("NameField");
         IntegerField hpField = root.Q<IntegerField>("HpField");
         SliderInt attackField = root.Q<SliderInt>("AttackSlider");
 
-        Character character = new Character(nameField.value, hpField.value, attackField.value, type, _currImage);
+        string nameValue = string.IsNullOrWhiteSpace(nameField.value) 
+            ? DEFAULT_NAME 
+            : nameField.value;
+
+        int hpValue = hpField.value <= 0 
+            ? DEFAULT_HP 
+            : hpField.value;
+
+        int attackValue = attackField.value <= 0 
+            ? DEFAULT_ATTACK 
+            : attackField.value;
+
+        string imageName = string.IsNullOrEmpty(_currImageName) 
+            ? DEFAULT_IMAGE 
+            : _currImageName;
+
+        Texture2D testImage = Resources.Load<Texture2D>(imageName);
+        if (testImage == null)
+        {
+            Debug.LogWarning("Image not found, using default.");
+            imageName = DEFAULT_IMAGE;
+        }
+
+        Character character = new Character(nameField.value, hpField.value, attackField.value, type, _currImageName);
 
         _characterList.Add(character);
+
+        // Resetear despues de aniadir 
+        nameField.value = "";
+        hpField.value = DEFAULT_HP;
+        attackField.value = DEFAULT_ATTACK;
     }
     
     // cambio de imagen en dropdown: coger nombre de imagen, cargar imagen
@@ -79,9 +121,22 @@ public class SetupScreen : MonoBehaviour
 
     void StartGame(ClickEvent ev)
     {
+        SaveCharactersToJson();
+
         _gameScreen.enabled = true;
 
         this.enabled = false;
+    }
+
+    void SaveCharactersToJson()
+    {
+        string json = JsonHelperCharacter.ToJson(_characterList, true);
+
+        string path = Path.Combine(Application.persistentDataPath, "characters.json");
+
+        File.WriteAllText(path, json);
+
+        Debug.Log("Saved JSON to: " + path);
     }
 
     void OpenHelp(ClickEvent ev)

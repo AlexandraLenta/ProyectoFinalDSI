@@ -1,8 +1,13 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
+using System.IO;
+
+
 
 public class GameScreen : MonoBehaviour
 {
+    List<Character> _characterList;
     EndScreen _endScreen;
     HelpMenu _helpMenu;
     VisualElement _root;
@@ -23,7 +28,39 @@ public class GameScreen : MonoBehaviour
         _helpButton = gameScreen.Q<Button>("HelpButton");
 
         _helpButton.RegisterCallback<ClickEvent>(OpenHelp);
+        
+        LoadCharactersFromJson(); 
+    }
 
+    void LoadCharactersFromJson()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "characters.json");
+
+        if (!File.Exists(path))
+        {
+            Debug.LogError("JSON file not found!");
+            return;
+        }
+
+        string json = File.ReadAllText(path);
+
+        _characterList = JsonHelperCharacter.FromJson<Character>(json);
+
+        Debug.Log("Loaded " + _characterList.Count + " characters");
+
+        // Optional: recreate visuals or logic
+        InitializeCharacters();
+    }
+
+    void InitializeCharacters()
+    {
+        foreach (Character character in _characterList)
+        {
+            // Load image again from Resources
+            Texture2D texture = Resources.Load<Texture2D>(character.ImageName);
+
+            Debug.Log($"Character: {character.Name}, HP: {character.HP}, ATK: {character.Attack}");
+        }
     }
 
     void OpenHelp(ClickEvent ev)
