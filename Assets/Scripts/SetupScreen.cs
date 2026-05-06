@@ -13,6 +13,7 @@ public class SetupScreen : MonoBehaviour
     Button _playerButton;
     Button _enemyButton;
     Button _startButton;
+    Button _helpButton;
 
     string _currImageName;
     DropdownField _imageDropdown;
@@ -21,21 +22,23 @@ public class SetupScreen : MonoBehaviour
     List<Character> _characterList;
 
     GameScreen _gameScreen;
-
+    HelpMenu _helpMenu;
     void OnEnable()
     {
         //coger game screen
         _gameScreen = GetComponent<GameScreen>();
+        _helpMenu = GetComponent<HelpMenu>();
 
         // coger todos los elementos necesarios
         _root = GetComponent<UIDocument>().rootVisualElement;
-        
+        VisualElement setupScreen = _root.Q("SetupScreen");
         // activar el setup screen
         _root.Q("SetupScreen").style.display = DisplayStyle.Flex;
 
         _playerButton = _root.Q<Button>("PlayerButton");
         _enemyButton = _root.Q<Button>("EnemyButton");
         _startButton = _root.Q<Button>("StartGameButton");
+        _helpButton = setupScreen.Q<Button>("HelpButton");
         _imageDropdown = _root.Q<DropdownField>("ImageField");
         _currImageElement = _root.Q("CharacterImage");
 
@@ -50,6 +53,8 @@ public class SetupScreen : MonoBehaviour
         RegisterButtonEffects(_enemyButton);
 
         RegisterButtonEffects(_startButton);
+        _helpButton.RegisterCallback<ClickEvent>(OpenHelp);
+
 
         // crear lista de personajes
         _characterList = new List<Character>();
@@ -122,6 +127,14 @@ public class SetupScreen : MonoBehaviour
         VisualElement button = ev.currentTarget as VisualElement;
 
         button.RemoveFromClassList("classic-button-pressed");
+    }
+
+    void OpenHelp(ClickEvent ev)
+    {
+        Debug.Log("OPEN HELP");
+        _helpMenu.enabled = true;
+
+        this.enabled = false;
     }
 
     void OnDisable()

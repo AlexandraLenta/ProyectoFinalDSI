@@ -6,7 +6,7 @@
     <ui:Template name="StartScreen" src="project://database/Assets/UXML/StartScreen.uxml?fileID=9197481963319205126&amp;guid=06a54f0b0a273fe45bd518a95e3f4486&amp;type=3#StartScreen"/>
     <ui:Instance template="StartScreen" name="StartScreen" style="height: 1440px; display: flex;"/>
     <ui:Instance template="SetupScreen" name="SetupScreen" style="display: none; height: 1440px;"/>
-    <ui:Instance template="HelpScreen" name="HelpScreen" style="opacity: 1; display: none;"/>
+    <ui:Instance template="HelpScreen" name="HelpScreen" style="opacity: 1; display: none; flex-grow: 1;"/>
     <ui:Instance template="GameScreen" name="GameScreen" style="display: none; flex-grow: 1;"/>
     <ui:Instance template="EndScreen" name="EndScreen" style="display: none; flex-grow: 1;"/>
 </ui:UXML>

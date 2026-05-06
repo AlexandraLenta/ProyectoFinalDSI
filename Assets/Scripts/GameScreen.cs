@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 public class GameScreen : MonoBehaviour
 {
     EndScreen _endScreen;
-
+    HelpMenu _helpMenu;
     VisualElement _root;
 
     Button _helpButton;
@@ -13,16 +13,22 @@ public class GameScreen : MonoBehaviour
 
     void OnEnable()
     {
+        _helpMenu = GetComponent<HelpMenu>();
         _root = GetComponent<UIDocument>().rootVisualElement;
-
+        VisualElement gameScreen = _root.Q("GameScreen");
         _root.Q("GameScreen").style.display = DisplayStyle.Flex;
 
         _moveButton = _root.Q<Button>("MoveButton");
         _attackButton = _root.Q<Button>("AttackButton");
+        _helpButton = gameScreen.Q<Button>("HelpButton");
+
 
         RegisterButtonEffects(_moveButton);
 
         RegisterButtonEffects(_attackButton);
+
+        _helpButton.RegisterCallback<ClickEvent>(OpenHelp);
+
     }
 
     void RegisterButtonEffects(Button button)
@@ -62,6 +68,14 @@ public class GameScreen : MonoBehaviour
         VisualElement button = ev.currentTarget as VisualElement;
 
         button.RemoveFromClassList("classic-button-pressed");
+    }
+
+    void OpenHelp(ClickEvent ev)
+    {
+        Debug.Log("open help menu");
+        _helpMenu.enabled = true;
+
+        this.enabled = false;
     }
 
 
