@@ -98,7 +98,7 @@ public class SetupScreen : MonoBehaviour
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         TextField nameField = root.Q<TextField>("NameField");
         IntegerField hpField = root.Q<IntegerField>("HpField");
-        SliderInt attackField = root.Q<SliderInt>("AttackSlider");
+        SliderInt attackField = root.Q<SliderInt>("AttackField");
 
         string nameValue = string.IsNullOrWhiteSpace(nameField.value) 
             ? DEFAULT_NAME 
