@@ -1,0 +1,7 @@
+{
+  "images": [
+    { "displayName": "Knight", "path": "Characters/knight.png" },
+    { "displayName": "Orc", "path": "Characters/orc.png" },
+    { "displayName": "Mage", "path": "Characters/mage.png" }
+  ]
+}
