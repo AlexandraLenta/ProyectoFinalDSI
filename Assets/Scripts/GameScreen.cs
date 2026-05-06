@@ -19,6 +19,49 @@ public class GameScreen : MonoBehaviour
 
         _moveButton = _root.Q<Button>("MoveButton");
         _attackButton = _root.Q<Button>("AttackButton");
+
+        RegisterButtonEffects(_moveButton);
+
+        RegisterButtonEffects(_attackButton);
+    }
+
+    void RegisterButtonEffects(Button button)
+    {
+        button.RegisterCallback<MouseEnterEvent>(OnHoverEnter);
+
+        button.RegisterCallback<MouseLeaveEvent>(OnHoverExit);
+
+        button.RegisterCallback<MouseDownEvent>(OnPressed);
+
+        button.RegisterCallback<MouseUpEvent>(OnReleased);
+    }
+
+    void OnHoverEnter(MouseEnterEvent ev)
+    {
+        VisualElement button = ev.currentTarget as VisualElement;
+
+        button.AddToClassList("classic-button-hover");
+    }
+
+    void OnHoverExit(MouseLeaveEvent ev)
+    {
+        VisualElement button = ev.currentTarget as VisualElement;
+
+        button.RemoveFromClassList("classic-button-hover");
+    }
+
+    void OnPressed(MouseDownEvent ev)
+    {
+        VisualElement button = ev.currentTarget as VisualElement;
+
+        button.AddToClassList("classic-button-pressed");
+    }
+
+    void OnReleased(MouseUpEvent ev)
+    {
+        VisualElement button = ev.currentTarget as VisualElement;
+
+        button.RemoveFromClassList("classic-button-pressed");
     }
 
 
