@@ -18,19 +18,17 @@ public class StartScreen : MonoBehaviour
         // coger boton
         _startButton = _root.Q<Button>("StartButton");
 
-        // CLICK
         _startButton.RegisterCallback<ClickEvent>(OnStart);
 
-        // HOVER ENTER
+    
         _startButton.RegisterCallback<MouseEnterEvent>(OnHoverEnter);
 
-        // HOVER EXIT
+ 
         _startButton.RegisterCallback<MouseLeaveEvent>(OnHoverExit);
 
-        // PRESSED
+
         _startButton.RegisterCallback<MouseDownEvent>(OnPressed);
 
-        // RELEASE
         _startButton.RegisterCallback<MouseUpEvent>(OnReleased);
     }
 
