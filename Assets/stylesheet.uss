@@ -132,6 +132,22 @@
     aspect-ratio: auto;
     -unity-font-definition: resource("Fonts/Aladin-Regular");
     font-size: 30px;
+    transition-property: background-color, scale;
+    transition-duration: 0.15s;
+    scale: 1;
+}
+
+.classic-button-hover {
+
+    background-color: rgb(170, 230, 205);
+
+    scale: 1.05;
+}
+
+
+.classic-button-pressed {
+
+    scale: 0.92;
 }
 
 .help-menu-button {
@@ -195,3 +211,5 @@
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
 }
+
+
