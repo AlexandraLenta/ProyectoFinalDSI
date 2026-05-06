@@ -4,12 +4,12 @@ using UnityEngine.UIElements;
 [System.Serializable]
 public class Character
 {
-    string _name;
-    int _hp;    
-    int _attack;
-    string _imgName;
+    [SerializeField] string _name;
+    [SerializeField] int _hp;    
+    [SerializeField] int _attack;
+    [SerializeField] string _imgName;
     Texture2D _img;
-    SetupScreen.CharacterType _characterType;
+    [SerializeField] SetupScreen.CharacterType _characterType;
 
     public string Name
     {
