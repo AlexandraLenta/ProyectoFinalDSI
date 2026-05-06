@@ -22,58 +22,14 @@ public class GameScreen : MonoBehaviour
         _attackButton = _root.Q<Button>("AttackButton");
         _helpButton = gameScreen.Q<Button>("HelpButton");
 
-
-        RegisterButtonEffects(_moveButton);
-
-        RegisterButtonEffects(_attackButton);
-
         _helpButton.RegisterCallback<ClickEvent>(OpenHelp);
 
     }
 
-    void RegisterButtonEffects(Button button)
-    {
-        button.RegisterCallback<MouseEnterEvent>(OnHoverEnter);
-
-        button.RegisterCallback<MouseLeaveEvent>(OnHoverExit);
-
-        button.RegisterCallback<MouseDownEvent>(OnPressed);
-
-        button.RegisterCallback<MouseUpEvent>(OnReleased);
-    }
-
-    void OnHoverEnter(MouseEnterEvent ev)
-    {
-        VisualElement button = ev.currentTarget as VisualElement;
-
-        button.AddToClassList("classic-button-hover");
-    }
-
-    void OnHoverExit(MouseLeaveEvent ev)
-    {
-        VisualElement button = ev.currentTarget as VisualElement;
-
-        button.RemoveFromClassList("classic-button-hover");
-    }
-
-    void OnPressed(MouseDownEvent ev)
-    {
-        VisualElement button = ev.currentTarget as VisualElement;
-
-        button.AddToClassList("classic-button-pressed");
-    }
-
-    void OnReleased(MouseUpEvent ev)
-    {
-        VisualElement button = ev.currentTarget as VisualElement;
-
-        button.RemoveFromClassList("classic-button-pressed");
-    }
-
     void OpenHelp(ClickEvent ev)
     {
-        Debug.Log("open help menu");
         _helpMenu.enabled = true;
+        _helpMenu.PreviousScreen = this;
 
         this.enabled = false;
     }
@@ -84,4 +40,43 @@ public class GameScreen : MonoBehaviour
         _root.Q("GameScreen").style.display = DisplayStyle.None;
 
     }
+
+    //    void RegisterButtonEffects(Button button)
+    // {
+    //     button.RegisterCallback<MouseEnterEvent>(OnHoverEnter);
+
+    //     button.RegisterCallback<MouseLeaveEvent>(OnHoverExit);
+
+    //     button.RegisterCallback<MouseDownEvent>(OnPressed);
+
+    //     button.RegisterCallback<MouseUpEvent>(OnReleased);
+    // }
+
+    // void OnHoverEnter(MouseEnterEvent ev)
+    // {
+    //     VisualElement button = ev.currentTarget as VisualElement;
+
+    //     button.AddToClassList("classic-button-hover");
+    // }
+
+    // void OnHoverExit(MouseLeaveEvent ev)
+    // {
+    //     VisualElement button = ev.currentTarget as VisualElement;
+
+    //     button.RemoveFromClassList("classic-button-hover");
+    // }
+
+    // void OnPressed(MouseDownEvent ev)
+    // {
+    //     VisualElement button = ev.currentTarget as VisualElement;
+
+    //     button.AddToClassList("classic-button-pressed");
+    // }
+
+    // void OnReleased(MouseUpEvent ev)
+    // {
+    //     VisualElement button = ev.currentTarget as VisualElement;
+
+    //     button.RemoveFromClassList("classic-button-pressed");
+    // }
 }

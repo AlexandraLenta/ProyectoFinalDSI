@@ -1,9 +1,16 @@
+using System.ComponentModel;
+using System.Net.WebSockets;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class HelpMenu : MonoBehaviour
 {
-    GameScreen _gameScreen;
+    MonoBehaviour _previousScreen;
+
+    public MonoBehaviour PreviousScreen {
+        get {return _previousScreen;}
+        set { _previousScreen = value;}
+    }
 
     VisualElement _root;
 
@@ -19,8 +26,6 @@ public class HelpMenu : MonoBehaviour
 
     void OnEnable()
     {
-        _gameScreen = GetComponent<GameScreen>();
-
         _root = GetComponent<UIDocument>().rootVisualElement;
         _root.Q("HelpScreen").style.display = DisplayStyle.Flex;
 
@@ -36,12 +41,8 @@ public class HelpMenu : MonoBehaviour
         pestaniaMovement.RegisterCallback<ClickEvent>(ShowMovement);
         pestaniaAttack.RegisterCallback<ClickEvent>(ShowAttack);
 
-        RegisterButtonEffects(pestaniaCharacter);
-
-        RegisterButtonEffects(pestaniaMovement);
-
-        RegisterButtonEffects(pestaniaAttack);
-
+        backButton = _root.Q<Button>("Back");
+        backButton.RegisterCallback<ClickEvent>(ReturnToPrevious);
 
         ShowCharacter(null);
     }
@@ -54,6 +55,10 @@ public class HelpMenu : MonoBehaviour
         contenidoMovement.style.display = DisplayStyle.None;
 
         contenidoAttack.style.display = DisplayStyle.None;
+        
+        pestaniaAttack.RemoveFromClassList("help-tab-button-selected");
+        pestaniaCharacter.RemoveFromClassList("help-tab-button-selected");
+        pestaniaMovement.RemoveFromClassList("help-tab-button-selected");
     }
 
     void ShowCharacter(ClickEvent evt)
@@ -61,6 +66,7 @@ public class HelpMenu : MonoBehaviour
         NoContenido();
 
         contenidoCharacter.style.display = DisplayStyle.Flex;
+        pestaniaCharacter.AddToClassList("help-tab-button-selected");
     }
 
     void ShowMovement(ClickEvent evt)
@@ -68,6 +74,7 @@ public class HelpMenu : MonoBehaviour
         NoContenido();
 
         contenidoMovement.style.display = DisplayStyle.Flex;
+        pestaniaMovement.AddToClassList("help-tab-button-selected");
     }
 
     void ShowAttack(ClickEvent evt)
@@ -75,50 +82,58 @@ public class HelpMenu : MonoBehaviour
         NoContenido();
 
         contenidoAttack.style.display = DisplayStyle.Flex;
+        pestaniaAttack.AddToClassList("help-tab-button-selected");
     }
 
-
-    void RegisterButtonEffects(Button button)
+    void ReturnToPrevious(ClickEvent ev)
     {
-        button.RegisterCallback<MouseEnterEvent>(OnHoverEnter);
-
-        button.RegisterCallback<MouseLeaveEvent>(OnHoverExit);
-
-        button.RegisterCallback<MouseDownEvent>(OnPressed);
-
-        button.RegisterCallback<MouseUpEvent>(OnReleased);
-    }
-
-    void OnHoverEnter(MouseEnterEvent ev)
-    {
-        VisualElement button = ev.currentTarget as VisualElement;
-
-        button.AddToClassList("classic-button-hover");
-    }
-
-    void OnHoverExit(MouseLeaveEvent ev)
-    {
-        VisualElement button = ev.currentTarget as VisualElement;
-
-        button.RemoveFromClassList("classic-button-hover");
-    }
-
-    void OnPressed(MouseDownEvent ev)
-    {
-        VisualElement button = ev.currentTarget as VisualElement;
-
-        button.AddToClassList("classic-button-pressed");
-    }
-
-    void OnReleased(MouseUpEvent ev)
-    {
-        VisualElement button = ev.currentTarget as VisualElement;
-
-        button.RemoveFromClassList("menu-button-pressed");
+        if (_previousScreen != null)
+        {
+            _previousScreen.enabled = true;
+            this.enabled = false;
+        }
     }
 
     void OnDisable()
     {
         _root.Q("HelpScreen").style.display = DisplayStyle.None;
     }
+    // void RegisterButtonEffects(Button button)
+    // {
+    //     button.RegisterCallback<MouseEnterEvent>(OnHoverEnter);
+
+    //     button.RegisterCallback<MouseLeaveEvent>(OnHoverExit);
+
+    //     button.RegisterCallback<MouseDownEvent>(OnPressed);
+
+    //     button.RegisterCallback<MouseUpEvent>(OnReleased);
+    // }
+
+    // void OnHoverEnter(MouseEnterEvent ev)
+    // {
+    //     VisualElement button = ev.currentTarget as VisualElement;
+
+    //     button.AddToClassList("classic-button-hover");
+    // }
+
+    // void OnHoverExit(MouseLeaveEvent ev)
+    // {
+    //     VisualElement button = ev.currentTarget as VisualElement;
+
+    //     button.RemoveFromClassList("classic-button-hover");
+    // }
+
+    // void OnPressed(MouseDownEvent ev)
+    // {
+    //     VisualElement button = ev.currentTarget as VisualElement;
+
+    //     button.AddToClassList("classic-button-pressed");
+    // }
+
+    // void OnReleased(MouseUpEvent ev)
+    // {
+    //     VisualElement button = ev.currentTarget as VisualElement;
+
+    //     button.RemoveFromClassList("menu-button-pressed");
+    // }
 }

@@ -3,7 +3,7 @@
     <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgb(213, 242, 227);">
         <ui:VisualElement name="Topbar" template="Topbar" style="height: 80px;">
             <ui:VisualElement name="Topbar" style="flex-grow: 1; flex-direction: row; height: 7%; flex-wrap: wrap; justify-content: space-between; align-content: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; background-color: rgb(0, 62, 31);">
-                <ui:Label text="Setup" name="Setup" class="scene-title" style="-unity-text-align: middle-center; width: 2040px;"/>
+                <ui:Label text="Setup" name="Setup" class="scene-title" style="-unity-text-align: middle-center; width: 1925px;"/>
                 <ui:Button text="" name="HelpButton" style="width: 64px; background-image: resource(&quot;Buttons/Help_Button&quot;); background-color: rgba(188, 188, 188, 0); aspect-ratio: 1; height: 64px; border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;"/>
             </ui:VisualElement>
         </ui:VisualElement>

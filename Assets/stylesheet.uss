@@ -128,7 +128,7 @@
     border-right-color: rgb(0, 62, 31);
     border-top-color: rgb(0, 62, 31);
     border-bottom-color: rgb(0, 62, 31);
-    width: 191px;
+    width: 35%;
     aspect-ratio: auto;
     -unity-font-definition: resource("Fonts/Aladin-Regular");
     font-size: 30px;
@@ -138,37 +138,43 @@
 }
 
 .classic-button-hover {
-
     background-color: rgb(170, 230, 205);
-
     scale: 1.05;
 }
 
-
-.classic-button-pressed {
-
+.classic-button:active {
     scale: 0.91;
 }
 
-.help-menu-button {
+
+
+.help-tab-button {
+    flex-grow: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 350px;
+    height: 100px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     background-color: rgb(115, 186, 155);
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 1px;
+    margin-right: 20px;
+    margin-left: 20px;
     font-size: 50px;
-    margin-top: 10px;
-    margin-right: 4px;
-    margin-bottom: 5px;
-    margin-left: 4px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    -unity-font-definition: resource("Fonts/Aladin-Regular");
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
 }
 
 .character-side {
@@ -213,3 +219,24 @@
 }
 
 
+
+.classic-button:hover {
+    background-color: rgb(170, 230, 205);
+    scale: 1.05;
+}
+
+.help-tab-button:hover {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgb(168, 220, 197);
+}
+
+.help-tab-button-selected {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgb(168, 220, 197);
+}
