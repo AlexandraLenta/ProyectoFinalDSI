@@ -21,6 +21,7 @@ public class SetupScreen : MonoBehaviour
     VisualElement _currImageElement;
     Texture2D _currImage;
     List<Character> _characterList;
+    Dictionary<string, string> _imageMap = new Dictionary<string, string>(); // key - value : nombre de imagen, path de imagen
 
     GameScreen _gameScreen;
     HelpMenu _helpMenu;
@@ -60,6 +61,28 @@ public class SetupScreen : MonoBehaviour
 
         // crear lista de personajes
         _characterList = new List<Character>();
+
+        // cargar las imagenes
+        LoadImageDatabase();
+    }
+
+    void LoadImageDatabase()
+    {
+        // archivo
+        TextAsset jsonFile = Resources.Load<TextAsset>("imageDatabase.json");
+
+        // coger el contenido del json
+        ImageDatabase db = JsonUtility.FromJson<ImageDatabase>(jsonFile.text);
+
+        List<string> imgOptions = new List<string>();
+
+        foreach (var img in db.images)
+        {
+            imgOptions.Add(img.displayName);
+            _imageMap[img.displayName] = img.path;
+        }
+
+        _imageDropdown.choices = imgOptions;
     }
     
     // agregar personaje
@@ -112,7 +135,12 @@ public class SetupScreen : MonoBehaviour
     // cambio de imagen en dropdown: coger nombre de imagen, cargar imagen
     void ChangeImage(ChangeEvent<string> ev)
     {
-        _currImageName = _imageDropdown.value;
+        string selected = ev.newValue;
+
+        if (!_imageMap.ContainsKey(selected))
+            return;
+
+        _currImageName = _imageMap[selected];
 
         _currImage = Resources.Load<Texture2D>(_currImageName);
 
