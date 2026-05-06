@@ -1,7 +1,7 @@
 {
   "images": [
-    { "displayName": "Knight", "path": "Characters/knight.png" },
-    { "displayName": "Orc", "path": "Characters/orc.png" },
-    { "displayName": "Mage", "path": "Characters/mage.png" }
+    { "displayName": "Knight", "path": "Characters/knight" },
+    { "displayName": "Orc", "path": "Characters/orc" },
+    { "displayName": "Mage", "path": "Characters/mage" }
   ]
 }

@@ -69,8 +69,9 @@ public class SetupScreen : MonoBehaviour
     void LoadImageDatabase()
     {
         // archivo
-        TextAsset jsonFile = Resources.Load<TextAsset>("imageDatabase.json");
+        TextAsset jsonFile = Resources.Load<TextAsset>("Characters/characterImages");
 
+        Debug.Log(jsonFile.text);
         // coger el contenido del json
         ImageDatabase db = JsonUtility.FromJson<ImageDatabase>(jsonFile.text);
 
