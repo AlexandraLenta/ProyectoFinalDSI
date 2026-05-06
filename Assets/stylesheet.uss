@@ -147,7 +147,7 @@
 
 .classic-button-pressed {
 
-    scale: 0.92;
+    scale: 0.91;
 }
 
 .help-menu-button {

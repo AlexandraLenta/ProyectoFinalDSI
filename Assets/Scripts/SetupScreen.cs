@@ -45,6 +45,12 @@ public class SetupScreen : MonoBehaviour
         _startButton.RegisterCallback<ClickEvent>(StartGame);
         _imageDropdown.RegisterCallback<ChangeEvent<string>>(ChangeImage);
 
+        RegisterButtonEffects(_playerButton);
+
+        RegisterButtonEffects(_enemyButton);
+
+        RegisterButtonEffects(_startButton);
+
         // crear lista de personajes
         _characterList = new List<Character>();
     }
@@ -77,6 +83,45 @@ public class SetupScreen : MonoBehaviour
         _gameScreen.enabled = true;
 
         this.enabled = false;
+    }
+
+    void RegisterButtonEffects(Button button)
+    {
+        button.RegisterCallback<MouseEnterEvent>(OnHoverEnter);
+
+        button.RegisterCallback<MouseLeaveEvent>(OnHoverExit);
+
+        button.RegisterCallback<MouseDownEvent>(OnPressed);
+
+        button.RegisterCallback<MouseUpEvent>(OnReleased);
+    }
+
+    void OnHoverEnter(MouseEnterEvent ev)
+    {
+        VisualElement button = ev.currentTarget as VisualElement;
+
+        button.AddToClassList("classic-button-hover");
+    }
+
+    void OnHoverExit(MouseLeaveEvent ev)
+    {
+        VisualElement button = ev.currentTarget as VisualElement;
+
+        button.RemoveFromClassList("classic-button-hover");
+    }
+
+    void OnPressed(MouseDownEvent ev)
+    {
+        VisualElement button = ev.currentTarget as VisualElement;
+
+        button.AddToClassList("classic-button-pressed");
+    }
+
+    void OnReleased(MouseUpEvent ev)
+    {
+        VisualElement button = ev.currentTarget as VisualElement;
+
+        button.RemoveFromClassList("classic-button-pressed");
     }
 
     void OnDisable()
