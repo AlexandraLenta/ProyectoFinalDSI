@@ -52,6 +52,8 @@ public class GameScreen : MonoBehaviour
         VisualElement gameScreen = _root.Q("GameScreen");
         _root.Q("GameScreen").style.display = DisplayStyle.Flex;
 
+        _endScreen = GetComponent<EndScreen>();
+
         _moveButton = _root.Q<Button>("MoveButton");
         _attackButton = _root.Q<Button>("AttackButton");
         _helpButton = gameScreen.Q<Button>("HelpButton");
