@@ -29,6 +29,9 @@ public class SetupScreen : MonoBehaviour
     List<VisualElement> _playerImages;
     List<Label> _playerNames;
 
+    List<VisualElement> _enemyImages;
+    List<Label> _enemyNames;
+
     // Variables por defecto
     const string DEFAULT_NAME = "Unnamed";
     const int DEFAULT_HP = 100;
@@ -47,21 +50,36 @@ public class SetupScreen : MonoBehaviour
         // activar el setup screen
         _root.Q("SetupScreen").style.display = DisplayStyle.Flex;
 
-        _playerImages = new List<VisualElement>()
-    {
-        _root.Q<VisualElement>("PlayerImage1"),
-        _root.Q<VisualElement>("PlayerImage2"),
-        _root.Q<VisualElement>("PlayerImage3"),
-        _root.Q<VisualElement>("PlayerImage4")
-    };
+         _playerImages = new List<VisualElement>()
+        {
+            _root.Q<VisualElement>("PlayerImage1"),
+            _root.Q<VisualElement>("PlayerImage2"),
+            _root.Q<VisualElement>("PlayerImage3"),
+            _root.Q<VisualElement>("PlayerImage4")
+        };
 
-            _playerNames = new List<Label>()
-    {
-        _root.Q<Label>("PlayerName1"),
-        _root.Q<Label>("PlayerName2"),
-        _root.Q<Label>("PlayerName3"),
-        _root.Q<Label>("PlayerName4")
-};
+         _playerNames = new List<Label>()
+        {
+            _root.Q<Label>("PlayerName1"),
+            _root.Q<Label>("PlayerName2"),
+            _root.Q<Label>("PlayerName3"),
+            _root.Q<Label>("PlayerName4")
+         };
+         _enemyImages = new List<VisualElement>()
+        {
+            _root.Q<VisualElement>("EnemyImage1"),
+            _root.Q<VisualElement>("EnemyImage2"),
+            _root.Q<VisualElement>("EnemyImage3"),
+            _root.Q<VisualElement>("EnemyImage4")
+        };
+
+                _enemyNames = new List<Label>()
+        {
+            _root.Q<Label>("EnemyName1"),
+            _root.Q<Label>("EnemyName2"),
+            _root.Q<Label>("EnemyName3"),
+            _root.Q<Label>("EnemyName4")
+        };
 
         _playerButton = _root.Q<Button>("PlayerButton");
         _enemyButton = _root.Q<Button>("EnemyButton");
@@ -170,6 +188,28 @@ public class SetupScreen : MonoBehaviour
                 _playerImages[index].style.backgroundImage =new StyleBackground(texture);
 
                 _playerNames[index].text = nameValue;
+            }
+        }
+
+        if (type == CharacterType.ENEMY)
+        {
+            int index = 0;
+
+            foreach (Character c in _characterList)
+            {
+                if (c.CharacterType == CharacterType.ENEMY)
+                    index++;
+            }
+
+            index--;
+
+            if (index < _enemyImages.Count)
+            {
+                Texture2D texture =Resources.Load<Texture2D>(imageName);
+
+                _enemyImages[index].style.backgroundImage =new StyleBackground(texture);
+
+                _enemyNames[index].text = nameValue;
             }
         }
     }

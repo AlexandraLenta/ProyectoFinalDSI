@@ -12,21 +12,21 @@
                 <ui:VisualElement name="EnemySide" class="character-side" style="flex-grow: 0;">
                     <ui:Label text="Enemy characters" name="Title" style="-unity-text-align: middle-center; -unity-font-definition: resource(&quot;Fonts/Aladin-Regular&quot;); font-size: 50px;"/>
                     <ui:VisualElement name="Characters" style="flex-grow: 0; width: 60%; flex-shrink: 1; flex-direction: row; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">
-                        <ui:VisualElement name="Tile" class="tile" style="flex-grow: 1;">
-                            <ui:VisualElement name="Image" class="tile-image"/>
-                            <ui:Label text="Enemy" name="Name" class="tile-name"/>
+                        <ui:VisualElement name="EnemyTile1" class="tile" style="flex-grow: 1;">
+                            <ui:VisualElement name="EnemyImage1" class="tile-image"/>
+                            <ui:Label text="Enemy" name="EnemyName1" class="tile-name"/>
                         </ui:VisualElement>
-                        <ui:VisualElement name="Tile" class="tile">
-                            <ui:VisualElement name="Image" class="tile-image" style="flex-grow: 0;"/>
-                            <ui:Label text="Enemy" name="Name" class="tile-name"/>
+                        <ui:VisualElement name="EnemyTile2" class="tile">
+                            <ui:VisualElement name="EnemyImage2" class="tile-image" style="flex-grow: 0;"/>
+                            <ui:Label text="Enemy" name="EnemyName2" class="tile-name"/>
                         </ui:VisualElement>
-                        <ui:VisualElement name="Tile" class="tile" style="flex-grow: 1;">
-                            <ui:VisualElement name="Image" class="tile-image" style="flex-grow: 0;"/>
-                            <ui:Label text="Enemy" name="Name" class="tile-name"/>
+                        <ui:VisualElement name="EnemyTile3" class="tile" style="flex-grow: 1;">
+                            <ui:VisualElement name="EnemyImage3" class="tile-image" style="flex-grow: 0;"/>
+                            <ui:Label text="Enemy" name="EnemyName3" class="tile-name"/>
                         </ui:VisualElement>
-                        <ui:VisualElement name="Tile" class="tile" style="flex-grow: 1;">
-                            <ui:VisualElement name="Image" class="tile-image" style="flex-grow: 0;"/>
-                            <ui:Label text="Enemy" name="Name" class="tile-name"/>
+                        <ui:VisualElement name="EnemyTile4" class="tile" style="flex-grow: 1;">
+                            <ui:VisualElement name="EnemyImage4" class="tile-image" style="flex-grow: 0;"/>
+                            <ui:Label text="Enemy" name="EnemyName4" class="tile-name"/>
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
