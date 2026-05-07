@@ -33,6 +33,21 @@ public class GameScreen : MonoBehaviour
     List<VisualElement> _highlightedSlots = new List<VisualElement>();
 
     List<Character> _characterList;
+
+    // LOGICA MOVE
+    bool _isDragging = false;
+
+    VisualElement _draggedVisual;
+    Character _draggedCharacter;
+
+    Vector2 _dragStartMousePosition;
+    Vector2 _dragStartElementPosition;
+
+    string _originalSlotName;
+
+    List<string> _validDropSlots = new List<string>();
+
+    // SCREENS
     EndScreen _endScreen;
     HelpMenu _helpMenu;
     VisualElement _root;
@@ -154,7 +169,9 @@ public class GameScreen : MonoBehaviour
 
         characterContainer.style.flexGrow = 1;
         characterContainer.style.flexDirection = FlexDirection.Column;
-
+        characterContainer.pickingMode = PickingMode.Position;
+        characterContainer.style.position = Position.Relative;
+        
         // imagen
         VisualElement image = new VisualElement();
 
@@ -173,9 +190,151 @@ public class GameScreen : MonoBehaviour
 
         slot.Add(characterContainer);
 
+        RegisterDragEvents(characterContainer, character);
+
         // guardar
         _slotCharacters[slotName] = character;
         _characterVisuals[character] = characterContainer;
+    }
+
+    void RegisterDragEvents(VisualElement visual, Character character)
+    {
+        visual.RegisterCallback<PointerDownEvent>((evt) =>
+        {
+            StartDrag(evt, visual, character);
+        });
+
+        visual.RegisterCallback<PointerMoveEvent>((evt) =>
+        {
+            Drag(evt);
+        });
+
+        visual.RegisterCallback<PointerUpEvent>((evt) =>
+        {
+            EndDrag(evt);
+        });
+    }
+
+    void StartDrag(PointerDownEvent evt, VisualElement visual, Character character)
+    {
+        _isDragging = true;
+
+        _draggedVisual = visual;
+        _draggedCharacter = character;
+
+        _selectedCharacter = character;
+
+        _dragStartMousePosition = evt.position;
+
+        _dragStartElementPosition =
+            new Vector2(
+                visual.resolvedStyle.left,
+                visual.resolvedStyle.top
+            );
+
+        _originalSlotName = GetCharacterSlot(character);
+
+        visual.style.position = Position.Absolute;
+
+        visual.BringToFront();
+
+        HighlightSlots(Color.blue);
+    }
+
+    void Drag(PointerMoveEvent evt)
+    {
+        if (!_isDragging || _draggedVisual == null)
+            return;
+
+        Vector2 delta =
+            evt.position - new Vector3(_dragStartMousePosition.x, _dragStartMousePosition.y, 0);
+
+        _draggedVisual.style.left = _dragStartElementPosition.x + delta.x;
+
+        _draggedVisual.style.top = _dragStartElementPosition.y + delta.y;
+    }
+
+    void EndDrag(PointerUpEvent evt)
+    {
+        if (!_isDragging)
+            return;
+
+        _isDragging = false;
+
+        string targetSlot = GetSlotUnderMouse(evt.position);
+
+        if (
+            targetSlot != null &&
+            _validDropSlots.Contains(targetSlot) &&
+            !_slotCharacters.ContainsKey(targetSlot)
+        )
+        {
+            MoveCharacterToSlot(
+                _draggedCharacter,
+                _originalSlotName,
+                targetSlot
+            );
+        }
+        else
+        {
+            ReturnToOriginalPosition();
+        }
+
+        ClearHighlights();
+
+        _draggedVisual = null;
+        _draggedCharacter = null;
+    }
+
+    string GetSlotUnderMouse(Vector2 mousePosition)
+    {
+        foreach (var pair in _gridSlots)
+        {
+            Rect worldBound = pair.Value.worldBound;
+
+            if (worldBound.Contains(mousePosition))
+            {
+                return pair.Key;
+            }
+        }
+
+        return null;
+    }
+
+    void MoveCharacterToSlot(Character character, string oldSlotName, string newSlotName)
+    {
+        VisualElement oldSlot =
+            _gridSlots[oldSlotName];
+
+        VisualElement newSlot =
+            _gridSlots[newSlotName];
+
+        VisualElement visual =
+            _characterVisuals[character];
+
+        oldSlot.Remove(visual);
+
+        visual.style.position = Position.Relative;
+
+        visual.style.left = 0;
+        visual.style.top = 0;
+
+        newSlot.Add(visual);
+
+        _slotCharacters.Remove(oldSlotName);
+
+        _slotCharacters[newSlotName] = character;
+    }
+
+    void ReturnToOriginalPosition()
+    {
+        if (_draggedVisual == null)
+            return;
+
+        _draggedVisual.style.left = 0;
+        _draggedVisual.style.top = 0;
+
+        _draggedVisual.style.position = Position.Relative;
     }
 
     void ShowCharacterStats(Character character)
@@ -486,6 +645,8 @@ public class GameScreen : MonoBehaviour
             _slotCharacters.Remove(slotName);
 
             Debug.Log(target.Name + " dead");
+
+            CheckGameEnd();
         }
 
         ShowCharacterStats(target);
@@ -498,49 +659,40 @@ public class GameScreen : MonoBehaviour
         this.enabled = false;
     }
 
+    void CheckGameEnd()
+    {
+        bool anyPlayerAlive = false;
+        bool anyEnemyAlive = false;
+
+        foreach (var character in _slotCharacters.Values)
+        {
+            if (character.CharacterType == SetupScreen.CharacterType.ENEMY)
+                anyEnemyAlive = true;
+            else
+                anyPlayerAlive = true;
+        }
+
+        if (!anyPlayerAlive)
+        {
+            Debug.Log("Enemies win!");
+            _endScreen.enabled = true;
+            _endScreen.Win = false;
+
+            this.enabled = false;
+        }
+        else if (!anyEnemyAlive)
+        {
+            Debug.Log("Players win!");
+            _endScreen.enabled = true;
+            _endScreen.Win = true;
+
+            this.enabled = false;
+        }
+    }
 
     void OnDisable()
     {
         _root.Q("GameScreen").style.display = DisplayStyle.None;
 
     }
-
-    //    void RegisterButtonEffects(Button button)
-    // {
-    //     button.RegisterCallback<MouseEnterEvent>(OnHoverEnter);
-
-    //     button.RegisterCallback<MouseLeaveEvent>(OnHoverExit);
-
-    //     button.RegisterCallback<MouseDownEvent>(OnPressed);
-
-    //     button.RegisterCallback<MouseUpEvent>(OnReleased);
-    // }
-
-    // void OnHoverEnter(MouseEnterEvent ev)
-    // {
-    //     VisualElement button = ev.currentTarget as VisualElement;
-
-    //     button.AddToClassList("classic-button-hover");
-    // }
-
-    // void OnHoverExit(MouseLeaveEvent ev)
-    // {
-    //     VisualElement button = ev.currentTarget as VisualElement;
-
-    //     button.RemoveFromClassList("classic-button-hover");
-    // }
-
-    // void OnPressed(MouseDownEvent ev)
-    // {
-    //     VisualElement button = ev.currentTarget as VisualElement;
-
-    //     button.AddToClassList("classic-button-pressed");
-    // }
-
-    // void OnReleased(MouseUpEvent ev)
-    // {
-    //     VisualElement button = ev.currentTarget as VisualElement;
-
-    //     button.RemoveFromClassList("classic-button-pressed");
-    // }
 }
