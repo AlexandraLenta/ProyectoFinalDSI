@@ -26,6 +26,9 @@ public class GameScreen : MonoBehaviour
     // personaje -- contenedor
     Dictionary<Character, VisualElement> _characterVisuals = new Dictionary<Character, VisualElement>();
 
+    // casilla -- posicion
+    Dictionary<string, Vector2Int> _slotPositions = new Dictionary<string, Vector2Int>();
+
     // casillas que se han coloreado (clickeables)
     List<VisualElement> _highlightedSlots = new List<VisualElement>();
 
@@ -193,26 +196,43 @@ public class GameScreen : MonoBehaviour
 
     void RegisterGridSlots()
     {
-        // los nombres de cada casilla
-        string[] slotNames =
+        for (int y = 0; y < 5; y++)
         {
-            "1stRow1","1stRow3","1stRow5","1stRow7",
-            "2ndRow1","2ndRow3","2ndRow5","2ndRow7",
-            "3rdRow1","3rdRow3","3rdRow5","3rdRow7",
-            "4thRow2","4thRow4","4thRow6","4thRow8",
-            "5thRow2","5thRow4","5thRow6","5thRow8"
-        };
-
-        foreach (string slotName in slotNames)
-        {
-            VisualElement slot = _root.Q<VisualElement>(slotName);
-
-            _gridSlots.Add(slotName, slot);
-
-            slot.RegisterCallback<ClickEvent>((evt) =>
+            for (int x = 0; x < 8; x++)
             {
-                OnGridSlotClicked(slotName);
-            });
+                string rowName = "";
+
+                switch (y)
+                {
+                    case 0: rowName = "1st"; break;
+                    case 1: rowName = "2nd"; break;
+                    case 2: rowName = "3rd"; break;
+                    case 3: rowName = "4th"; break;
+                    case 4: rowName = "5th"; break;
+                }
+
+                string slotName =
+                    rowName + "Row" + (x + 1);
+
+                VisualElement slot =
+                    _root.Q<VisualElement>(slotName);
+
+                if (slot == null)
+                {
+                    Debug.LogError("Missing slot: " + slotName);
+                    continue;
+                }
+
+                _gridSlots[slotName] = slot;
+
+                _slotPositions[slotName] =
+                    new Vector2Int(x, y);
+
+                slot.RegisterCallback<ClickEvent>((evt) =>
+                {
+                    OnGridSlotClicked(slotName);
+                });
+            }
         }
     }
 
@@ -238,6 +258,83 @@ public class GameScreen : MonoBehaviour
         // resetear accion
         _currentMode = Action.NONE;
     }
+
+    // pos -> nombre
+    Vector2Int GetSlotPosition(string slotName)
+    {
+        string[] split = slotName.Split("Row");
+
+        string rowPart = split[0];
+        int column = int.Parse(split[1]) - 1;
+
+        int row = 0;
+
+        switch (rowPart)
+        {
+            case "1st":
+                row = 0;
+                break;
+
+            case "2nd":
+                row = 1;
+                break;
+
+            case "3rd":
+                row = 2;
+                break;
+
+            case "4th":
+                row = 3;
+                break;
+
+            case "5th":
+                row = 4;
+                break;
+        }
+
+        return new Vector2Int(column, row);
+    }
+
+    // nombre -> pos
+    string GetSlotName(Vector2Int pos)
+    {
+        string rowName = "";
+
+        switch (pos.y)
+        {
+            case 0:
+                rowName = "1st";
+                break;
+
+            case 1:
+                rowName = "2nd";
+                break;
+
+            case 2:
+                rowName = "3rd";
+                break;
+
+            case 3:
+                rowName = "4th";
+                break;
+
+            case 4:
+                rowName = "5th";
+                break;
+        }
+
+        return rowName + "Row" + (pos.x + 1);
+    }
+    string GetCharacterSlot(Character character)
+    {
+        foreach (var pair in _slotCharacters)
+        {
+            if (pair.Value == character)
+                return pair.Key;
+        }
+
+        return "";
+    }
     void ActivateMoveMode(ClickEvent ev)
     {
         if (_selectedCharacter == null)
@@ -262,13 +359,43 @@ public class GameScreen : MonoBehaviour
     {
         ClearHighlights();
 
-        foreach (var pair in _gridSlots)
+        string currentSlotName =
+            GetCharacterSlot(_selectedCharacter);
+
+        if (currentSlotName == "")
+            return;
+
+        Vector2Int currentPos =
+            _slotPositions[currentSlotName];
+
+        Vector2Int[] directions =
         {
-            VisualElement slot = pair.Value;
+            Vector2Int.up,
+            Vector2Int.down,
+            Vector2Int.left,
+            Vector2Int.right
+        };
 
-            slot.style.backgroundColor = color;
+        foreach (Vector2Int dir in directions)
+        {
+            Vector2Int targetPos =
+                currentPos + dir;
 
-            _highlightedSlots.Add(slot);
+            foreach (var pair in _slotPositions)
+            {
+                if (pair.Value == targetPos)
+                {
+                    VisualElement slot =
+                        _gridSlots[pair.Key];
+
+                    slot.style.backgroundColor =
+                        color;
+
+                    _highlightedSlots.Add(slot);
+
+                    break;
+                }
+            }
         }
     }
 
