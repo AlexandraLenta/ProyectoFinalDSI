@@ -26,6 +26,9 @@ public class SetupScreen : MonoBehaviour
     GameScreen _gameScreen;
     HelpMenu _helpMenu;
 
+    List<VisualElement> _playerImages;
+    List<Label> _playerNames;
+
     // Variables por defecto
     const string DEFAULT_NAME = "Unnamed";
     const int DEFAULT_HP = 100;
@@ -43,6 +46,22 @@ public class SetupScreen : MonoBehaviour
         VisualElement setupScreen = _root.Q("SetupScreen");
         // activar el setup screen
         _root.Q("SetupScreen").style.display = DisplayStyle.Flex;
+
+        _playerImages = new List<VisualElement>()
+    {
+        _root.Q<VisualElement>("PlayerImage1"),
+        _root.Q<VisualElement>("PlayerImage2"),
+        _root.Q<VisualElement>("PlayerImage3"),
+        _root.Q<VisualElement>("PlayerImage4")
+    };
+
+            _playerNames = new List<Label>()
+    {
+        _root.Q<Label>("PlayerName1"),
+        _root.Q<Label>("PlayerName2"),
+        _root.Q<Label>("PlayerName3"),
+        _root.Q<Label>("PlayerName4")
+};
 
         _playerButton = _root.Q<Button>("PlayerButton");
         _enemyButton = _root.Q<Button>("EnemyButton");
@@ -131,6 +150,28 @@ public class SetupScreen : MonoBehaviour
         nameField.value = "";
         hpField.value = DEFAULT_HP;
         attackField.value = DEFAULT_ATTACK;
+
+        if (type == CharacterType.PLAYER)
+        {
+            int index = 0;
+
+            foreach (Character c in _characterList)
+            {
+                if (c.CharacterType == CharacterType.PLAYER)
+                    index++;
+            }
+
+            index--;
+
+            if (index < _playerImages.Count)
+            {
+                Texture2D texture =Resources.Load<Texture2D>(imageName);
+
+                _playerImages[index].style.backgroundImage =new StyleBackground(texture);
+
+                _playerNames[index].text = nameValue;
+            }
+        }
     }
     
     // cambio de imagen en dropdown: coger nombre de imagen, cargar imagen
