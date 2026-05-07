@@ -18,6 +18,7 @@ public class Character
     public int HP
     {
         get {return _hp;}
+        set {_hp = value;}
     }
 
     public int Attack

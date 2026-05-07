@@ -262,7 +262,35 @@ public class GameScreen : MonoBehaviour
 
     void AttackCharacter(string slotName)
     {
-        
+        // si en la casilla destino no hay personaje, no hacemos nada
+        if (!_slotCharacters.ContainsKey(slotName))
+            return;
+
+        // personaje a daniar
+        Character target = _slotCharacters[slotName];
+
+        // miramos si es del mismo equipo
+        if (target.CharacterType == _selectedCharacter.CharacterType)
+            return;
+
+        // quitamos puntos de vida
+        target.HP -= _selectedCharacter.Attack;
+
+        Debug.Log(target.Name + " HP: " + target.HP);
+
+        // Si ha muerto
+        if (target.HP <= 0)
+        {
+            VisualElement targetSlot = _gridSlots[slotName];
+
+            targetSlot.Clear();
+
+            _slotCharacters.Remove(slotName);
+
+            Debug.Log(target.Name + " dead");
+        }
+
+        ShowCharacterStats(target);
     }
     void OpenHelp(ClickEvent ev)
     {
