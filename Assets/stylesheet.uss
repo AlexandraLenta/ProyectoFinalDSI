@@ -146,8 +146,6 @@
     scale: 0.91;
 }
 
-
-
 .help-tab-button {
     flex-grow: 0;
     margin-top: 20px;
@@ -212,13 +210,11 @@
     border-right-width: 2px;
     border-bottom-width: 2px;
     border-left-width: 2px;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
+    border-left-color: rgba(0, 62, 31, 0.48);
+    border-right-color: rgba(0, 62, 31, 0.48);
+    border-top-color: rgba(0, 62, 31, 0.48);
+    border-bottom-color: rgba(0, 62, 31, 0.48);
 }
-
-
 
 .classic-button:hover {
     background-color: rgb(170, 230, 205);
@@ -240,3 +236,5 @@
     border-left-width: 0;
     background-color: rgb(168, 220, 197);
 }
+
+

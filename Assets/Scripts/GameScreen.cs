@@ -3,8 +3,6 @@ using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System.IO;
 
-
-
 public class GameScreen : MonoBehaviour
 {
     List<Character> _characterList;
