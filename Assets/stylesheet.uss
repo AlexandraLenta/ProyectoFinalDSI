@@ -210,10 +210,13 @@
     border-right-width: 2px;
     border-bottom-width: 2px;
     border-left-width: 2px;
+
     border-left-color: rgba(0, 62, 31, 0.48);
     border-right-color: rgba(0, 62, 31, 0.48);
     border-top-color: rgba(0, 62, 31, 0.48);
     border-bottom-color: rgba(0, 62, 31, 0.48);
+
+    aspect-ratio: 1;
 }
 
 .classic-button:hover {
@@ -237,4 +240,26 @@
     background-color: rgb(168, 220, 197);
 }
 
+.character-container {
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+}
 
+.character-image {
+    width: 80%;
+    aspect-ratio: 1;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.character-label {
+    -unity-text-align: middle-center;
+    font-size: 18px;
+    margin-top: 4px;
+}

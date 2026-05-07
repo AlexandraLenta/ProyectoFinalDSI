@@ -152,20 +152,22 @@ public class GameScreen : MonoBehaviour
         // contenedor
         VisualElement characterContainer = new VisualElement();
 
-        characterContainer.style.flexGrow = 1;
+        characterContainer.AddToClassList("character-container");
+
         characterContainer.style.flexDirection = FlexDirection.Column;
 
         // imagen
         VisualElement image = new VisualElement();
 
-        image.style.flexGrow = 1;
-        image.style.backgroundImage = new StyleBackground(texture);
+        image.AddToClassList("character-image");
+
+        image.style.backgroundImage =
+            new StyleBackground(texture);
 
         // nombre
         Label label = new Label(character.Name);
-
-        label.style.unityTextAlign = TextAnchor.MiddleCenter;
-        label.style.fontSize = 18;
+        
+        label.AddToClassList("character-label");
 
         // agregar al contenedor principal
         characterContainer.Add(image);
