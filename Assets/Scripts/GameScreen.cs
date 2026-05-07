@@ -51,6 +51,9 @@ public class GameScreen : MonoBehaviour
         _helpButton = gameScreen.Q<Button>("HelpButton");
 
         _helpButton.RegisterCallback<ClickEvent>(OpenHelp);
+
+        _moveButton.RegisterCallback<ClickEvent>(ActivateMoveMode);
+        _attackButton.RegisterCallback<ClickEvent>(ActivateAttackMode);
         
         LoadCharactersFromJson();
 
@@ -159,6 +162,10 @@ public class GameScreen : MonoBehaviour
         // click 
         slot.RegisterCallback<ClickEvent>((evt) =>
         {
+            // se selecciona el slot y el personaje
+            _selectedCharacter = character;
+            _selectedSlot = slot;
+
             ShowCharacterStats(character);
         });
     }
@@ -216,6 +223,25 @@ public class GameScreen : MonoBehaviour
 
         // resetear accion
         _currentMode = Action.NONE;
+    }
+    void ActivateMoveMode(ClickEvent ev)
+    {
+        if (_selectedCharacter == null)
+            return;
+
+        _currentMode = Action.MOVE;
+
+        HighlightSlots(Color.blue);
+    }
+
+    void ActivateAttackMode(ClickEvent ev)
+    {
+        if (_selectedCharacter == null)
+            return;
+
+        _currentMode = Action.ATTACK;
+
+        HighlightSlots(Color.red);
     }
 
     void HighlightSlots(Color color)
