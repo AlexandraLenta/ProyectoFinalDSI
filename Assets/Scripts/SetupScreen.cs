@@ -126,9 +126,27 @@ public class SetupScreen : MonoBehaviour
     // agregar personaje
     void AddCharacter(ClickEvent ev, CharacterType type)
     {
-        if (_characterList.Count >= 4)
+        int playerCount = 0;
+        int enemyCount = 0;
+
+        foreach (Character c in _characterList)
         {
-            Debug.Log("Max 4 characters reached!");
+            if (c.CharacterType == CharacterType.PLAYER)
+                playerCount++;
+
+            else if (c.CharacterType == CharacterType.ENEMY)
+                enemyCount++;
+        }
+
+        if (type == CharacterType.PLAYER && playerCount >= 4)
+        {
+            Debug.Log("Max 4 players reached!");
+            return;
+        }
+
+        if (type == CharacterType.ENEMY && enemyCount >= 4)
+        {
+            Debug.Log("Max 4 enemies reached!");
             return;
         }
 

@@ -54,13 +54,88 @@ public class GameScreen : MonoBehaviour
 
     void InitializeCharacters()
     {
+        //foreach (Character character in _characterList)
+        //{
+        //    // Load image again from Resources
+        //    Texture2D texture = Resources.Load<Texture2D>(character.ImageName);
+
+        //    Debug.Log($"Character: {character.Name}, HP: {character.HP}, ATK: {character.Attack}");
+        //}
+
+        List<string> enemySlots = new List<string>()
+    {
+        "1stRow1",
+        "1stRow3",
+        "1stRow5",
+        "1stRow7"
+    };
+
+        List<string> playerSlots = new List<string>()
+    {
+        "5thRow2",
+        "5thRow4",
+        "5thRow6",
+        "5thRow8"
+    };
+
+        int enemyIndex = 0;
+        int playerIndex = 0;
+
         foreach (Character character in _characterList)
         {
-            // Load image again from Resources
             Texture2D texture = Resources.Load<Texture2D>(character.ImageName);
 
             Debug.Log($"Character: {character.Name}, HP: {character.HP}, ATK: {character.Attack}");
+
+            // enemigos
+            if (character.CharacterType == SetupScreen.CharacterType.ENEMY)
+            {
+                if (enemyIndex >= enemySlots.Count)
+                    continue;
+
+                VisualElement slot = _root.Q<VisualElement>(enemySlots[enemyIndex]);
+
+                CreateCharacterVisual(slot, character, texture);
+
+                enemyIndex++;
+            }
+
+            // player
+            else
+            {
+                if (playerIndex >= playerSlots.Count)
+                    continue;
+
+                VisualElement slot = _root.Q<VisualElement>(playerSlots[playerIndex]);
+
+                CreateCharacterVisual(slot, character, texture);
+
+                playerIndex++;
+            }
         }
+    }
+
+    void CreateCharacterVisual(VisualElement slot, Character character, Texture2D texture)
+    {
+        slot.Clear();
+
+        // Imagen
+        VisualElement image = new VisualElement();
+
+        image.style.flexGrow = 1;
+        image.style.backgroundImage = new StyleBackground(texture);
+        
+
+        // Nombre
+        Label label = new Label(character.Name);
+
+        label.style.unityTextAlign = TextAnchor.MiddleCenter;
+        label.style.fontSize = 18;
+        label.style.color = Color.black;
+
+        // Aniadir
+        slot.Add(image);
+        slot.Add(label);
     }
 
     void OpenHelp(ClickEvent ev)
