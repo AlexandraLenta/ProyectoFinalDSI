@@ -1,0 +1,4 @@
+https://github.com/AlexandraLenta/ProyectoFinalDSI
+
+Integrantes: Alexandra Lenta, Zhiyi Zhou
+Version: 6000.3.6f1
