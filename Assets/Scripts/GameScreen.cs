@@ -176,15 +176,6 @@ public class GameScreen : MonoBehaviour
         // guardar
         _slotCharacters[slotName] = character;
         _characterVisuals[character] = characterContainer;
-
-        // click
-        slot.RegisterCallback<ClickEvent>((evt) =>
-        {
-            _selectedCharacter = character;
-            _selectedSlot = slot;
-
-            ShowCharacterStats(character);
-        });
     }
 
     void ShowCharacterStats(Character character)
@@ -238,10 +229,29 @@ public class GameScreen : MonoBehaviour
 
     void OnGridSlotClicked(string slotName)
     {
-        // si no se ha seleccionado personaje no hacemos nada
+        // NORMAL SELECTION MODE
+        if (_currentMode == Action.NONE)
+        {
+            if (_slotCharacters.ContainsKey(slotName))
+            {
+                Character clickedCharacter =
+                    _slotCharacters[slotName];
+
+                _selectedCharacter = clickedCharacter;
+
+                _selectedSlot = _gridSlots[slotName];
+
+                ShowCharacterStats(clickedCharacter);
+            }
+
+            return;
+        }
+
+        // No selected character
         if (_selectedCharacter == null)
             return;
 
+        // ACTION MODES
         switch (_currentMode)
         {
             case Action.MOVE:
@@ -253,9 +263,8 @@ public class GameScreen : MonoBehaviour
                 break;
         }
 
-        ClearHighlights(); // para resetear los colores
+        ClearHighlights();
 
-        // resetear accion
         _currentMode = Action.NONE;
     }
 
