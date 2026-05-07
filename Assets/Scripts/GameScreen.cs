@@ -5,6 +5,27 @@ using System.IO;
 
 public class GameScreen : MonoBehaviour
 {
+    enum Action
+    {
+        NONE,
+        MOVE,
+        ATTACK
+    }
+
+    Action _currentMode = Action.NONE; // la accion que se ha seleccionado
+
+    Character _selectedCharacter; // el personaje seleccionado
+    VisualElement _selectedSlot; // la casilla del grid seleccionada
+
+    // casilla ocupadas -- personaje
+    Dictionary<string, Character> _slotCharacters = new Dictionary<string, Character>();
+
+    // casillas -- el elemento de la casilla
+    Dictionary<string, VisualElement> _gridSlots = new Dictionary<string, VisualElement>();
+
+    // casillas que se han coloreado (clickeables)
+    List<VisualElement> _highlightedSlots = new List<VisualElement>();
+
     List<Character> _characterList;
     EndScreen _endScreen;
     HelpMenu _helpMenu;
@@ -36,6 +57,8 @@ public class GameScreen : MonoBehaviour
         _nameLabel = _root.Q<Label>("Name");
         _hpLabel = _root.Q<Label>("hp");
         _attackLabel = _root.Q<Label>("Attack");
+
+        RegisterGridSlots();
     }
 
     void LoadCharactersFromJson()
@@ -60,14 +83,6 @@ public class GameScreen : MonoBehaviour
 
     void InitializeCharacters()
     {
-        //foreach (Character character in _characterList)
-        //{
-        //    // Load image again from Resources
-        //    Texture2D texture = Resources.Load<Texture2D>(character.ImageName);
-
-        //    Debug.Log($"Character: {character.Name}, HP: {character.HP}, ATK: {character.Attack}");
-        //}
-
         List<string> enemySlots = new List<string>()
     {
         "1stRow1",
@@ -155,6 +170,63 @@ public class GameScreen : MonoBehaviour
         _attackLabel.text = "Attack : " + character.Attack;
     }
 
+    void RegisterGridSlots()
+    {
+        // los nombres de cada casilla
+        string[] slotNames =
+        {
+            "1stRow1","1stRow3","1stRow5","1stRow7",
+            "2ndRow1","2ndRow3","2ndRow5","2ndRow7",
+            "3rdRow1","3rdRow3","3rdRow5","3rdRow7",
+            "4thRow2","4thRow4","4thRow6","4thRow8",
+            "5thRow2","5thRow4","5thRow6","5thRow8"
+        };
+
+        foreach (string slotName in slotNames)
+        {
+            VisualElement slot = _root.Q<VisualElement>(slotName);
+
+            _gridSlots.Add(slotName, slot);
+
+            slot.RegisterCallback<ClickEvent>((evt) =>
+            {
+                OnGridSlotClicked(slotName);
+            });
+        }
+    }
+
+    void OnGridSlotClicked(string slotName)
+    {
+        // si no se ha seleccionado personaje no hacemos nada
+        if (_selectedCharacter == null)
+            return;
+
+        switch (_currentMode)
+        {
+            case Action.MOVE:
+                MoveCharacter(slotName);
+                break;
+
+            case Action.ATTACK:
+                AttackCharacter(slotName);
+                break;
+        }
+
+        // ClearHighlights(); // para resetear los colores
+
+        // resetear accion
+        _currentMode = Action.NONE;
+    }
+
+    void MoveCharacter(string slotName)
+    {
+        
+    }
+
+    void AttackCharacter(string slotName)
+    {
+        
+    }
     void OpenHelp(ClickEvent ev)
     {
         _helpMenu.enabled = true;
