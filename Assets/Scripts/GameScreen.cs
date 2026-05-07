@@ -282,45 +282,43 @@ public class GameScreen : MonoBehaviour
         _highlightedSlots.Clear();
     }
 
-    void MoveCharacter(string slotName)
+    void MoveCharacter(string targetSlotName)
     {
-        // si esta ocupada la casilla, no nos podemos mover alli
-        if (_slotCharacters.ContainsKey(slotName))
+        // si esta ocupada no hacemos nada
+        if (_slotCharacters.ContainsKey(targetSlotName))
             return;
 
-        // visual element de la casilla
-        VisualElement targetSlot = _gridSlots[slotName];
+        VisualElement targetSlot = _gridSlots[targetSlotName];
 
-        // vaciar la casilla destino
-        targetSlot.Clear();
+        // encontrar el slot viejo de este personaje
+        string oldSlotName = "";
 
-        // cogemos *todo* lo que esta en la casilla seleccionada por si acaso
-        foreach (VisualElement child in _selectedSlot.Children())
+        foreach (var pair in _slotCharacters)
         {
-            // aniadimos todo a la casilla destino
-            targetSlot.Add(child);
-        }
-
-        // vaciar la casilla source
-        _selectedSlot.Clear();
-
-        
-        string oldSlot = "";
-
-        foreach (var pair in _gridSlots) // buscamos en las casillas hasta encontrar la seleccionada
-        {
-            if (pair.Value == _selectedSlot)
+            if (pair.Value == _selectedCharacter)
             {
-                oldSlot = pair.Key;
+                oldSlotName = pair.Key;
                 break;
             }
         }
 
-        // cambiamos el personaje a la nueva casilla
-        _slotCharacters.Remove(oldSlot);
-        _slotCharacters[slotName] = _selectedCharacter;
+        if (oldSlotName == "")
+            return;
 
-        // seleccionamos la nueva casilla
+        VisualElement oldSlot = _gridSlots[oldSlotName];
+
+        VisualElement characterVisual = _characterVisuals[_selectedCharacter];
+
+        oldSlot.Remove(characterVisual);
+
+        targetSlot.Add(characterVisual);
+
+        // actualizar todo
+        _slotCharacters.Remove(oldSlotName);
+
+        _slotCharacters[targetSlotName] =
+            _selectedCharacter;
+
         _selectedSlot = targetSlot;
     }
 
