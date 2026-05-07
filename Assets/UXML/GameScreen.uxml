@@ -6,7 +6,7 @@
             <AttributeOverrides element-name="Setup" text="Game"/>
         </ui:Instance>
         <ui:VisualElement name="GameScreen" style="flex-grow: 1; flex-direction: row;">
-            <ui:VisualElement name="MainScreen" style="flex-grow: 1; width: 80%; background-color: rgb(213, 242, 227); padding-top: 60px; padding-right: 60px; padding-bottom: 60px; padding-left: 60px;">
+            <ui:VisualElement name="MainScreen" style="flex-grow: 1; width: 80%; background-color: rgb(204, 220, 181); padding-top: 60px; padding-right: 60px; padding-bottom: 60px; padding-left: 60px;">
                 <ui:VisualElement name="Grid" style="flex-grow: 1;">
                     <ui:VisualElement name="1stRow" style="flex-direction: row;">
                         <ui:VisualElement name="1stRow1" class="grid" style="width: 12.5%;"/>
