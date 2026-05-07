@@ -2,16 +2,16 @@
     <Style src="project://database/Assets/stylesheet.uss?fileID=7433441132597879392&amp;guid=f6325ce37e11e7b4c8a3e508c4d145c7&amp;type=3#stylesheet"/>
     <ui:VisualElement name="Container" style="flex-grow: 1;">
         <ui:VisualElement template="Topbar">
-            <ui:VisualElement name="Topbar" style="flex-grow: 1; flex-direction: row; height: 7%; flex-wrap: wrap; justify-content: space-between; align-content: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; background-color: rgb(0, 62, 31);">
-                <ui:Label text="Victory/Defeat!" name="Title" class="scene-title" style="-unity-text-align: middle-center; width: 2544px;"/>
+            <ui:VisualElement name="Topbar" style="flex-grow: 1; flex-direction: row; height: 7%; flex-wrap: wrap; justify-content: space-between; align-content: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; background-color: rgb(98, 133, 53);">
+                <ui:Label text="Victory/Defeat!" name="Title" class="scene-title" style="-unity-text-align: middle-center; width: 2544px; background-color: rgb(98, 133, 53);"/>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="MainScreen" style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgb(213, 242, 227);">
+        <ui:VisualElement name="MainScreen" style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgb(204, 220, 181);">
             <ui:VisualElement name="RetryContainer" style="flex-grow: 1; justify-content: flex-end; margin-bottom: 90px;">
-                <ui:Button text="Retry" name="RetryButton" class="classic-button" style="width: 350px; height: 130px; font-size: 60px; border-radius: 8px; background-color: rgb(115, 186, 155);"/>
+                <ui:Button text="Retry" name="RetryButton" class="classic-button" style="width: 350px; height: 130px; font-size: 60px; border-radius: 8px; background-color: rgb(152, 183, 113);"/>
             </ui:VisualElement>
             <ui:VisualElement name="NewGameContainer" style="flex-grow: 1; margin-top: 90px;">
-                <ui:Button text="New Game" name="NewGameButton" class="classic-button" style="width: 350px; height: 130px; font-size: 60px; border-radius: 8px; background-color: rgb(115, 186, 155);"/>
+                <ui:Button text="New Game" name="NewGameButton" class="classic-button" style="width: 350px; height: 130px; font-size: 60px; border-radius: 8px; background-color: rgb(152, 183, 113);"/>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
