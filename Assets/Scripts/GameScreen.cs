@@ -353,7 +353,7 @@ public class GameScreen : MonoBehaviour
 
         _currentMode = Action.MOVE;
 
-        HighlightSlots(Color.blue);
+        HighlightSlots(Color.aliceBlue);
     }
 
     void ActivateAttackMode(ClickEvent ev)
@@ -363,7 +363,7 @@ public class GameScreen : MonoBehaviour
 
         _currentMode = Action.ATTACK;
 
-        HighlightSlots(Color.red);
+        HighlightSlots(Color.softRed);
     }
 
     void HighlightSlots(Color color)
