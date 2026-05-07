@@ -17,7 +17,7 @@ public class GameScreen : MonoBehaviour
     Character _selectedCharacter; // el personaje seleccionado
     VisualElement _selectedSlot; // la casilla del grid seleccionada
 
-    // casilla ocupadas -- personaje
+    // casilla ocupada -- personaje
     Dictionary<string, Character> _slotCharacters = new Dictionary<string, Character>();
 
     // casillas -- el elemento de la casilla
@@ -220,7 +220,44 @@ public class GameScreen : MonoBehaviour
 
     void MoveCharacter(string slotName)
     {
+        // si esta ocupada la casilla, no nos podemos mover alli
+        if (_slotCharacters.ContainsKey(slotName))
+            return;
+
+        // visual element de la casilla
+        VisualElement targetSlot = _gridSlots[slotName];
+
+        // vaciar la casilla destino
+        targetSlot.Clear();
+
+        // cogemos *todo* lo que esta en la casilla seleccionada por si acaso
+        foreach (VisualElement child in _selectedSlot.Children())
+        {
+            // aniadimos todo a la casilla destino
+            targetSlot.Add(child);
+        }
+
+        // vaciar la casilla source
+        _selectedSlot.Clear();
+
         
+        string oldSlot = "";
+
+        foreach (var pair in _gridSlots) // buscamos en las casillas hasta encontrar la seleccionada
+        {
+            if (pair.Value == _selectedSlot)
+            {
+                oldSlot = pair.Key;
+                break;
+            }
+        }
+
+        // cambiamos el personaje a la nueva casilla
+        _slotCharacters.Remove(oldSlot);
+        _slotCharacters[slotName] = _selectedCharacter;
+
+        // seleccionamos la nueva casilla
+        _selectedSlot = targetSlot;
     }
 
     void AttackCharacter(string slotName)
