@@ -212,10 +212,34 @@ public class GameScreen : MonoBehaviour
                 break;
         }
 
-        // ClearHighlights(); // para resetear los colores
+        ClearHighlights(); // para resetear los colores
 
         // resetear accion
         _currentMode = Action.NONE;
+    }
+
+    void HighlightSlots(Color color)
+    {
+        ClearHighlights();
+
+        foreach (var pair in _gridSlots)
+        {
+            VisualElement slot = pair.Value;
+
+            slot.style.backgroundColor = color;
+
+            _highlightedSlots.Add(slot);
+        }
+    }
+
+    void ClearHighlights()
+    {
+        foreach (VisualElement slot in _highlightedSlots)
+        {
+            slot.style.backgroundColor = Color.clear;
+        }
+
+        _highlightedSlots.Clear();
     }
 
     void MoveCharacter(string slotName)
