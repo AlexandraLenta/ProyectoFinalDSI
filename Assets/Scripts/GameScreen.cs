@@ -16,6 +16,10 @@ public class GameScreen : MonoBehaviour
     Button _moveButton;
     Button _attackButton;
 
+    Label _nameLabel;
+    Label _hpLabel;
+    Label _attackLabel;
+
     void OnEnable()
     {
         _helpMenu = GetComponent<HelpMenu>();
@@ -29,7 +33,11 @@ public class GameScreen : MonoBehaviour
 
         _helpButton.RegisterCallback<ClickEvent>(OpenHelp);
         
-        LoadCharactersFromJson(); 
+        LoadCharactersFromJson();
+
+        _nameLabel = _root.Q<Label>("Name");
+        _hpLabel = _root.Q<Label>("hp");
+        _attackLabel = _root.Q<Label>("Attack");
     }
 
     void LoadCharactersFromJson()
@@ -123,19 +131,30 @@ public class GameScreen : MonoBehaviour
         VisualElement image = new VisualElement();
 
         image.style.flexGrow = 1;
+
         image.style.backgroundImage = new StyleBackground(texture);
-        
 
         // Nombre
         Label label = new Label(character.Name);
 
         label.style.unityTextAlign = TextAnchor.MiddleCenter;
         label.style.fontSize = 18;
-        label.style.color = Color.black;
 
-        // Aniadir
         slot.Add(image);
         slot.Add(label);
+
+        // click 
+        slot.RegisterCallback<ClickEvent>((evt) =>
+        {
+            ShowCharacterStats(character);
+        });
+    }
+
+    void ShowCharacterStats(Character character)
+    {
+        _nameLabel.text = "Name : " + character.Name;
+        _hpLabel.text = "Hp : " + character.HP;
+        _attackLabel.text = "Attack : " + character.Attack;
     }
 
     void OpenHelp(ClickEvent ev)
