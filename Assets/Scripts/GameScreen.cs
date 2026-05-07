@@ -23,6 +23,9 @@ public class GameScreen : MonoBehaviour
     // casillas -- el elemento de la casilla
     Dictionary<string, VisualElement> _gridSlots = new Dictionary<string, VisualElement>();
 
+    // personaje -- contenedor
+    Dictionary<Character, VisualElement> _characterVisuals = new Dictionary<Character, VisualElement>();
+
     // casillas que se han coloreado (clickeables)
     List<VisualElement> _highlightedSlots = new List<VisualElement>();
 
@@ -87,20 +90,20 @@ public class GameScreen : MonoBehaviour
     void InitializeCharacters()
     {
         List<string> enemySlots = new List<string>()
-    {
-        "1stRow1",
-        "1stRow3",
-        "1stRow5",
-        "1stRow7"
-    };
+        {
+            "1stRow1",
+            "1stRow3",
+            "1stRow5",
+            "1stRow7"
+        };
 
-        List<string> playerSlots = new List<string>()
-    {
-        "5thRow2",
-        "5thRow4",
-        "5thRow6",
-        "5thRow8"
-    };
+            List<string> playerSlots = new List<string>()
+        {
+            "5thRow2",
+            "5thRow4",
+            "5thRow6",
+            "5thRow8"
+        };
 
         int enemyIndex = 0;
         int playerIndex = 0;
@@ -119,7 +122,7 @@ public class GameScreen : MonoBehaviour
 
                 VisualElement slot = _root.Q<VisualElement>(enemySlots[enemyIndex]);
 
-                CreateCharacterVisual(slot, character, texture);
+                CreateCharacterVisual(slot, enemySlots[enemyIndex], character, texture);
 
                 enemyIndex++;
             }
@@ -132,37 +135,48 @@ public class GameScreen : MonoBehaviour
 
                 VisualElement slot = _root.Q<VisualElement>(playerSlots[playerIndex]);
 
-                CreateCharacterVisual(slot, character, texture);
+                CreateCharacterVisual(slot, playerSlots[playerIndex], character, texture);
 
                 playerIndex++;
             }
         }
     }
 
-    void CreateCharacterVisual(VisualElement slot, Character character, Texture2D texture)
+    void CreateCharacterVisual(VisualElement slot, string slotName, Character character, Texture2D texture)
     {
         slot.Clear();
 
-        // Imagen
+        // contenedor
+        VisualElement characterContainer = new VisualElement();
+
+        characterContainer.style.flexGrow = 1;
+        characterContainer.style.flexDirection = FlexDirection.Column;
+
+        // imagen
         VisualElement image = new VisualElement();
 
         image.style.flexGrow = 1;
-
         image.style.backgroundImage = new StyleBackground(texture);
 
-        // Nombre
+        // nombre
         Label label = new Label(character.Name);
 
         label.style.unityTextAlign = TextAnchor.MiddleCenter;
         label.style.fontSize = 18;
 
-        slot.Add(image);
-        slot.Add(label);
+        // agregar al contenedor principal
+        characterContainer.Add(image);
+        characterContainer.Add(label);
 
-        // click 
+        slot.Add(characterContainer);
+
+        // guardar
+        _slotCharacters[slotName] = character;
+        _characterVisuals[character] = characterContainer;
+
+        // click
         slot.RegisterCallback<ClickEvent>((evt) =>
         {
-            // se selecciona el slot y el personaje
             _selectedCharacter = character;
             _selectedSlot = slot;
 
