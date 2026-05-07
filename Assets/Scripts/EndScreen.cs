@@ -10,6 +10,13 @@ public class EndScreen : MonoBehaviour
     Button _retryButton;
     Button _newGameButton;
 
+    bool _hasWon = false;
+    public bool Win
+    {
+        get{return _hasWon;}
+        set{_hasWon = value;}
+    }
+
     void OnEnable()
     {
         _startScreen = GetComponent<StartScreen>();
@@ -26,6 +33,17 @@ public class EndScreen : MonoBehaviour
         _retryButton.RegisterCallback<ClickEvent>(OnRetry);
 
         _newGameButton.RegisterCallback<ClickEvent>(OnNewGame);
+
+        Label titleText = _root.Q<Label>("Title");
+
+        if (_hasWon)
+        {
+            titleText.text = "Victory!";    
+        }
+        else
+        {
+            titleText.text = "Defeat!";
+        }
     }
 
     void OnRetry(ClickEvent ev)

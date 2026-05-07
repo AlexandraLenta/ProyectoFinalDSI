@@ -486,6 +486,8 @@ public class GameScreen : MonoBehaviour
             _slotCharacters.Remove(slotName);
 
             Debug.Log(target.Name + " dead");
+
+            CheckGameEnd();
         }
 
         ShowCharacterStats(target);
@@ -498,49 +500,40 @@ public class GameScreen : MonoBehaviour
         this.enabled = false;
     }
 
+    void CheckGameEnd()
+    {
+        bool anyPlayerAlive = false;
+        bool anyEnemyAlive = false;
+
+        foreach (var character in _slotCharacters.Values)
+        {
+            if (character.CharacterType == SetupScreen.CharacterType.ENEMY)
+                anyEnemyAlive = true;
+            else
+                anyPlayerAlive = true;
+        }
+
+        if (!anyPlayerAlive)
+        {
+            Debug.Log("Enemies win!");
+            _endScreen.enabled = true;
+            _endScreen.Win = false;
+
+            this.enabled = false;
+        }
+        else if (!anyEnemyAlive)
+        {
+            Debug.Log("Players win!");
+            _endScreen.enabled = true;
+            _endScreen.Win = true;
+
+            this.enabled = false;
+        }
+    }
 
     void OnDisable()
     {
         _root.Q("GameScreen").style.display = DisplayStyle.None;
 
     }
-
-    //    void RegisterButtonEffects(Button button)
-    // {
-    //     button.RegisterCallback<MouseEnterEvent>(OnHoverEnter);
-
-    //     button.RegisterCallback<MouseLeaveEvent>(OnHoverExit);
-
-    //     button.RegisterCallback<MouseDownEvent>(OnPressed);
-
-    //     button.RegisterCallback<MouseUpEvent>(OnReleased);
-    // }
-
-    // void OnHoverEnter(MouseEnterEvent ev)
-    // {
-    //     VisualElement button = ev.currentTarget as VisualElement;
-
-    //     button.AddToClassList("classic-button-hover");
-    // }
-
-    // void OnHoverExit(MouseLeaveEvent ev)
-    // {
-    //     VisualElement button = ev.currentTarget as VisualElement;
-
-    //     button.RemoveFromClassList("classic-button-hover");
-    // }
-
-    // void OnPressed(MouseDownEvent ev)
-    // {
-    //     VisualElement button = ev.currentTarget as VisualElement;
-
-    //     button.AddToClassList("classic-button-pressed");
-    // }
-
-    // void OnReleased(MouseUpEvent ev)
-    // {
-    //     VisualElement button = ev.currentTarget as VisualElement;
-
-    //     button.RemoveFromClassList("classic-button-pressed");
-    // }
 }
